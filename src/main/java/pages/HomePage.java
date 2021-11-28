@@ -4,68 +4,107 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import utilities.CommonOps;
 
 import java.util.List;
 
-public class HomePage extends CommonOps{
+public class HomePage{
 
     @FindBy(className = "css-1m290ug")
-    private WebElement topRect;
+    protected static WebElement topRect;
 
     @FindBy(className = "css-1aanzv4")
-    private WebElement welcomeTitle;
+    protected static WebElement welcomeTitle;
 
     @FindBy(linkText = "Documentation")
-    private WebElement documentation;
+    protected static WebElement documentation;
 
     @FindBy(linkText = "Tutorials")
-    private WebElement tutorials;
+    protected static WebElement tutorials;
 
     @FindBy(linkText = "Community")
-    private WebElement community;
+    protected static WebElement community;
 
     @FindBy(linkText = "Public Slack")
-    private WebElement publicSlack;
+    protected static WebElement publicSlack;
 
     @FindBy(className = "css-1m4liiw")
-    private WebElement rectMiddle;
+    protected static WebElement rectMiddle;
 
     @FindBy(className = "css-kff62q-button")
-    private WebElement vectorBtn;
+    protected static WebElement vectorBtn;
 
     @FindBy(className = "css-17abkeq")
-    private WebElement titleMiddleRec;
+    protected static WebElement titleMiddleRec;
 
     @FindBy(className ="css-k8f47l")
-    private WebElement createUsersAndTeams;
+    protected static WebElement createUsersAndTeams;
 
     @FindBy(xpath = "(//div[@class='panel-header grid-drag-handle']//header[@class='panel-title-container'])[3]")
-    private WebElement dashboards;
+    protected static WebElement dashboards;
 
     @FindBy(xpath = "//div[@class='panel-menu-container dropdown open']/ul/li/a")
-    private List<WebElement> dashboardMenu;
+    protected static List<WebElement> dashboardMenu;
 
     @FindBy(xpath = "(//div[@class='panel-menu-container dropdown open']/ul/li/a)[1]")
-    private WebElement dashboardView;
+    protected static WebElement dashboardView;
 
     @FindBy(xpath = "((//div[@class='scrollbar-view']//*[name()='article'])[4]//a)[2]")
-    private WebElement latestFromTheBlogNov22;
+    protected static WebElement latestFromTheBlogNov22;
 
-    @Step("Right vector click from middle rectangle")
-    private static void rightVectorClick(WebElement element){
-        element.click();
+    public static WebElement getTopRect() {
+        return topRect;
     }
 
-    @Step("Create users and teams click")
-    private static void createUsersAndTeamsClick(WebElement element){
-        element.click();
+    public static WebElement getTitleMiddleRec() {
+        return titleMiddleRec;
     }
 
-    @Step("Scroll to article")
-    public void scrollToArticle(WebElement element){
-        JavascriptExecutor js= (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",element);
+    public static WebElement getCreateUsersAndTeams() {
+        return createUsersAndTeams;
+    }
+
+    public static WebElement getDashboards() {
+        return dashboards;
+    }
+
+    public static List<WebElement> getDashboardMenu() {
+        return dashboardMenu;
+    }
+
+    public static WebElement getDashboardView() {
+        return dashboardView;
+    }
+
+    public static WebElement getLatestFromTheBlogNov22() {
+        return latestFromTheBlogNov22;
+    }
+
+    public static WebElement getWelcomeTitle() {
+        return welcomeTitle;
+    }
+
+    public static WebElement getDocumentation() {
+        return documentation;
+    }
+
+    public static WebElement getTutorials() {
+        return tutorials;
+    }
+
+    public static WebElement getCommunity() {
+        return community;
+    }
+
+    public static WebElement getPublicSlack() {
+        return publicSlack;
+    }
+
+    public static WebElement getRectMiddle() {
+        return rectMiddle;
+    }
+
+    public static WebElement getVectorBtn() {
+        return vectorBtn;
     }
 
 }
