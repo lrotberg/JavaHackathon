@@ -1,2 +1,13 @@
+allure-2.16.1/
 allure-results/
-*.java
+test-recordings/
+
+
+*.apk
+*.png
+*.avi
+*.class
+*.docx
+*.jar
+*.war
+*.exe
