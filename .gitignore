@@ -1,7 +1,5 @@
-allure-2.16.1/
 allure-results/
 test-recordings/
-
 
 *.apk
 *.png
