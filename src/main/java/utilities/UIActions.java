@@ -12,7 +12,7 @@ public class UIActions extends CommonOps {
     }
 
     @Step("send keys")
-    public static void uptadeText(WebElement element,String str){
+    public static void updateText(WebElement element, String str){
         element.sendKeys(str);
     }
 

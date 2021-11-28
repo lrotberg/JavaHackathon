@@ -10,8 +10,8 @@ public class Flows extends CommonOps {
 
     @Step("login")
     public void login(){
-        UIActions.uptadeText(LoginPage.getUser(),"admin");
-        UIActions.uptadeText(LoginPage.getPass(),"admin");
+        UIActions.updateText(LoginPage.getUser(),"admin");
+        UIActions.updateText(LoginPage.getPass(),"admin");
         UIActions.click(LoginPage.getloginBtn());
     }
 
