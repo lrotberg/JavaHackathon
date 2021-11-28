@@ -6,42 +6,42 @@ import org.openqa.selenium.support.FindBy;
 public class LeftMenuPage {
 
   @FindBy(xpath = "//img[@alt='Grafana']/..")
-  protected WebElement linkHome;
+  protected static WebElement linkHome;
 
   @FindBy(css = "button[aria-label='Search dashboards']")
-  protected WebElement btnSearch;
+  protected static WebElement btnSearch;
 
   @FindBy(css = "a[aria-label='Create']")
-  protected WebElement linkCreateDashboard;
+  protected static WebElement linkCreateDashboard;
 
   @FindBy(css = "a[aria-label='Explore']")
-  protected WebElement linkExplore;
+  protected static WebElement linkExplore;
 
   @FindBy(css = "a[aria-label='Alerting']")
-  protected WebElement linkAlerting;
+  protected static WebElement linkAlerting;
 
   @FindBy(css = "a[aria-label='Configuration']")
-  protected WebElement linkConfig;
+  protected static WebElement linkConfig;
 
   @FindBy(css = "a[aria-label='Server Admin']")
-  protected WebElement linkServerAdmin;
+  protected static WebElement linkServerAdmin;
 
   @FindBy(css = "a[aria-label='admin']")
-  protected WebElement linkProfile;
+  protected static WebElement linkProfile;
 
-  public WebElement getLinkHome() { return linkHome; }
+  public static WebElement getLinkHome() { return linkHome; }
 
-  public WebElement getBtnSearch() { return btnSearch; }
+  public static WebElement getBtnSearch() { return btnSearch; }
 
-  public WebElement getLinkCreateDashboard() { return linkCreateDashboard; }
+  public static WebElement getLinkCreateDashboard() { return linkCreateDashboard; }
 
-  public WebElement getLinkExplore() { return linkExplore; }
+  public static WebElement getLinkExplore() { return linkExplore; }
 
-  public WebElement getLinkAlerting() { return linkAlerting; }
+  public static WebElement getLinkAlerting() { return linkAlerting; }
 
-  public WebElement getLinkConfig() { return linkConfig; }
+  public static WebElement getLinkConfig() { return linkConfig; }
 
-  public WebElement getLinkServerAdmin() { return linkServerAdmin; }
+  public static WebElement getLinkServerAdmin() { return linkServerAdmin; }
 
-  public WebElement getLinkProfile() { return linkProfile; }
+  public static WebElement getLinkProfile() { return linkProfile; }
 }
