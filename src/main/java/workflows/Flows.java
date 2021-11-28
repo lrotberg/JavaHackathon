@@ -1,8 +1,7 @@
 package workflows;
 
 import io.qameta.allure.Step;
-import pages.HomePage;
-import pages.LoginPage;
+import pages.*;
 import utilities.CommonOps;
 import utilities.UIActions;
 
@@ -25,10 +24,21 @@ public class Flows extends CommonOps {
         UIActions.click(HomePage.getLatestFromTheBlogNov22());
     }
 
-//    @Step
-//    public void clickDashboard(){
-//
-//    }
+    @Step("click to server admin")
+    public void clickToServerAdmin(){
+        UIActions.click(LeftMenuPage.getLinkServerAdmin());
+    }
+
+    @Step("create new user")
+    public void createNewUser(){
+        UIActions.click(ServerAdminPage.getNewUserBtn());
+        UIActions.updateText(AddNewUserDetailsPage.getNameOfNewUserTxt(),"team4");
+        UIActions.updateText(AddNewUserDetailsPage.getEmailOfNewUserTxt(),"team4@gmail.com");
+        UIActions.updateText(AddNewUserDetailsPage.getUserNameOfNewUserTxt(),"team4");
+        UIActions.updateText(AddNewUserDetailsPage.getPasswordOfNameNewUserTxt(),"team4");
+        UIActions.click(AddNewUserDetailsPage.getCreateUserBtn());
+
+    }
 
     @Step("click right vector")
     public void clickRightVector(){
