@@ -16,7 +16,7 @@ public class CommonOps extends BasePage {
     WebDriverManager.chromedriver().setup();
     driver = new ChromeDriver();
     driver.manage().window().maximize();
-//    driver.get();
+    driver.get("http://localhost:3000/");
   }
 
   @Step("Close Web Session")
