@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class UIActions extends CommonOps {
 
     @Step("click")
-    private static void click(WebElement element){
+    public static void click(WebElement element){
         element.click();
     }
 
@@ -17,7 +17,7 @@ public class UIActions extends CommonOps {
     }
 
     @Step("Scroll")
-    public void scroll(WebElement element){
+    public static void scroll(WebElement element){
         JavascriptExecutor js= (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);",element);
     }
