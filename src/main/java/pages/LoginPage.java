@@ -16,6 +16,13 @@ public class LoginPage  {
     @FindBy(how = How.XPATH, using= "//button[@class='css-1xivtx2-button']")
     protected WebElement loginBtn;
 
+    public WebElement getSkipBtn() {
+        return skipBtn;
+    }
+
+    @FindBy(how = How.XPATH, using= "//button/span[@class='css-1mhnkuh']")
+    protected WebElement skipBtn;
+
    /* public void EnterData() //String user, String pass
     {
         userNameTxt.sendKeys("admin");
