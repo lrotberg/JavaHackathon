@@ -1,4 +1,6 @@
 package pages;
 
-public class LoginPage {
+import utilities.CommonOps;
+
+public class LoginPage extends CommonOps {
 }
