@@ -2,11 +2,14 @@ package utilities;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.PageFactory;
+import pages.LoginPage;
 
 public class ManagePages extends BasePage{
 
+  private static LoginPage loginPage;
+
   @Step("Build Pages")
   public void buildPages() {
-//    PageFactory.initElements(driver, <class>);
+    loginPage= PageFactory.initElements(driver, LoginPage.class);
   }
 }

@@ -1,11 +1,13 @@
 package pages;
 
+import io.qameta.allure.Step;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class HomePage{
+public class HomePage extends CommonOps{
 
     @FindBy(className = "css-1m290ug")
     private WebElement topRect;
@@ -46,7 +48,23 @@ public class HomePage{
     @FindBy(xpath = "(//div[@class='panel-menu-container dropdown open']/ul/li/a)[1]")
     private WebElement dashboardView;
 
-    @FindBy(xpath = "(//div[@class='scrollbar-view'//*[name()='article']/a)[1]")
-    private WebElement latestFromTheBlogTopRect;
+    @FindBy(xpath = "((//div[@class='scrollbar-view']//*[name()='article'])[4]//a)[2]")
+    private WebElement latestFromTheBlogNov22;
+
+    @Step("Right vector click from middle rectangle")
+    private static void rightVectorClick(WebElement element){
+        element.click();
+    }
+
+    @Step("Create users and teams click")
+    private static void createUsersAndTeamsClick(WebElement element){
+        element.click();
+    }
+
+    @Step("Scroll to article")
+    public void scrollToArticle(WebElement element){
+        JavascriptExecutor js= (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",element);
+    }
 
 }
