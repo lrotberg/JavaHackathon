@@ -9,5 +9,8 @@
         <module name="JavaHackathon" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="test" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

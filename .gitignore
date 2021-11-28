@@ -1,7 +1,8 @@
+test-recordings/
+.idea/
+apache-maven-3.6.3/
 allure-2.16.1/
 allure-results/
-test-recordings/
-apache-maven-3.6.3/
 
 *.apk
 *.png
