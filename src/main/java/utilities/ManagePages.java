@@ -6,10 +6,10 @@ import pages.LoginPage;
 
 public class ManagePages extends BasePage{
 
-  LoginPage login;
+  private static LoginPage loginPage;
+
   @Step("Build Pages")
   public void buildPages() {
-    login= PageFactory.initElements(driver, LoginPage.class);
-
+    loginPage= PageFactory.initElements(driver, LoginPage.class);
   }
 }
