@@ -1,5 +1,6 @@
 package utilities;
 
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.WebDriver;
@@ -18,4 +19,7 @@ public class BasePage {
   protected static AndroidDriver<AndroidElement> mobileDriver;
 
   protected static DesiredCapabilities dc;
+
+  protected static TouchAction touch;
+
 }

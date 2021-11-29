@@ -38,6 +38,9 @@ public class CommonOps extends BasePage {
   public void closeWebSession() {
     driver.quit();
   }
+  public void closeMobileSession() {
+    mobileDriver.quit();
+  }
 
 
 @Step ("open mobile app")
@@ -64,7 +67,8 @@ public void openApp() throws MalformedURLException {
 
   @AfterClass
   public void teardown() {
-    closeWebSession();
+   // closeWebSession();
+    closeMobileSession();
   }
 
   @Step("Save Screenshot")
