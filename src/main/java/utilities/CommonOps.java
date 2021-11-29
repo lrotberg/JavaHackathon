@@ -3,9 +3,13 @@ package utilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -17,6 +21,10 @@ public class CommonOps extends BasePage {
     driver = new ChromeDriver();
     driver.manage().window().maximize();
     driver.get("http://localhost:3000/");
+    ManagePages.buildPages();
+    action= new Actions(driver);
+    //WebDriverWait wait = new WebDriverWait(driver, 7);
+    //wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//input[@name='user']"))));
   }
 
   @Step("Close Web Session")
@@ -26,6 +34,9 @@ public class CommonOps extends BasePage {
 
   @BeforeClass
   public void startup() {
+
+
+
     openWebSession();
   }
 
