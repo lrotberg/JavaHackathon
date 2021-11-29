@@ -1,8 +1,13 @@
 package utilities;
 
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.PageFactory;
 import pages.*;
+import pages.Mobile.*;
+
+import java.time.Duration;
+
 
 public class ManagePages extends BasePage{
 
@@ -13,6 +18,8 @@ public class ManagePages extends BasePage{
   private static AddNewUserDetailsPage addNewUserDetailsPage;
   private static SkipPage skipPage;
 
+
+
   @Step("Build Pages")
   public static void buildPages() {
     loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -21,5 +28,7 @@ public class ManagePages extends BasePage{
     serverAdminPage=PageFactory.initElements(driver,ServerAdminPage.class);
     addNewUserDetailsPage = PageFactory.initElements(driver, AddNewUserDetailsPage.class);
     skipPage=PageFactory.initElements(driver,SkipPage.class);
+
   }
+
 }

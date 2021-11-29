@@ -2,9 +2,13 @@ package utilities;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.sikuli.script.Screen;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class BasePage {
 
@@ -14,4 +18,10 @@ public class BasePage {
   protected static RequestSpecification request;
   protected static Response response;
   protected static Screen screen;
+  protected static String reportDirectory = "reports";
+  protected static String reportFormat = "xml";
+  protected static String testName = "Untitled";
+  protected static AndroidDriver<AndroidElement> mobileDriver;
+  protected static TouchAction touch;
+  protected static DesiredCapabilities dc;
 }
