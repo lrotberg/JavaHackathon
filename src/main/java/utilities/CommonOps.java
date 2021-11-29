@@ -38,6 +38,8 @@ public class CommonOps extends BasePage {
   public void closeWebSession() {
     driver.quit();
   }
+
+
 @Step ("open mobile app")
 public void openApp() throws MalformedURLException {
   dc = new DesiredCapabilities();
@@ -57,7 +59,7 @@ public void openApp() throws MalformedURLException {
 
 
     openApp();
-    openWebSession();
+  //  openWebSession();
   }
 
   @AfterClass
