@@ -3,6 +3,7 @@ package utilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
+import io.restassured.RestAssured;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 public class CommonOps extends BasePage {
 
@@ -20,11 +22,16 @@ public class CommonOps extends BasePage {
     WebDriverManager.chromedriver().setup();
     driver = new ChromeDriver();
     driver.manage().window().maximize();
-    driver.get("http://localhost:3000/");
+    driver.get(url);
     ManagePages.buildPages();
     action= new Actions(driver);
-    //WebDriverWait wait = new WebDriverWait(driver, 7);
-    //wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//input[@name='user']"))));
+  }
+
+  @Step("init API")
+  public void initAPI(){
+    RestAssured.baseURI=url;
+    request=RestAssured.given().auth().preemptive().basic("admin","admin");
+    request.header("Content-Type","application/json");
   }
 
   @Step("Close Web Session")
@@ -34,15 +41,13 @@ public class CommonOps extends BasePage {
 
   @BeforeClass
   public void startup() {
-
-
-
-    openWebSession();
+    //openWebSession();
+    initAPI();
   }
 
   @AfterClass
   public void teardown() {
-    closeWebSession();
+    //closeWebSession();
   }
 
   @Step("Save Screenshot")
