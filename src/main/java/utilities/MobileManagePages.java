@@ -9,14 +9,14 @@ public class MobileManagePages extends BasePage
     /**** varaibles declartion ***/
 
     private static LivingTabTemperature temp;
-    private static LivingTabCurrency currency;
+//    private static LivingTabCurrency currency;
 
     /**** construct mobile pages (page factory) ***/
 
     @Step("Build Pages for Appium")
     public static void buildPagesAppium() {
         temp=new LivingTabTemperature(mobileDriver);
-        currency= new LivingTabCurrency(mobileDriver);
+//        currency= new LivingTabCurrency(mobileDriver);
         touch= new TouchAction(mobileDriver);
     }
 }

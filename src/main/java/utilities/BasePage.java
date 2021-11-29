@@ -6,6 +6,7 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.sikuli.script.Screen;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -23,5 +24,6 @@ public class BasePage {
   protected static String testName = "Untitled";
   protected static AndroidDriver<AndroidElement> mobileDriver;
   protected static TouchAction touch;
-  protected static DesiredCapabilities dc;
+  protected static DesiredCapabilities capabilities;
+  protected static ChromeOptions chromeOptions;
 }

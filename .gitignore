@@ -6,6 +6,7 @@ allure-results/
 ConfigFiles/
 
 uiDesigner.xml
+encodings.xml
 
 *.apk
 *.png

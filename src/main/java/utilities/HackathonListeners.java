@@ -6,7 +6,7 @@ import org.testng.ITestResult;
 
 import java.io.File;
 
-public class Listeners extends CommonOps implements ITestListener {
+public class HackathonListeners extends CommonOps implements ITestListener {
   @Override
   public void onStart(ITestContext execution) { System.out.println("------- Starting testing execution -------"); }
 
