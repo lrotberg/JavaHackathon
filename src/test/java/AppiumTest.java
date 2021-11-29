@@ -3,7 +3,6 @@ import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.Mobile.LivingTabCurrency;
 import pages.Mobile.LivingTabTemperature;
 import utilities.CommonOps;
 import workflows.MobileFlow;

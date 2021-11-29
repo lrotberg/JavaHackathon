@@ -1,7 +1,6 @@
 package utilities;
 import io.appium.java_client.TouchAction;
 import io.qameta.allure.Step;
-import pages.Mobile.LivingTabCurrency;
 import pages.Mobile.LivingTabTemperature;
 
 

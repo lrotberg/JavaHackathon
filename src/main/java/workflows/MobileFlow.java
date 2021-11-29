@@ -1,7 +1,6 @@
 package workflows;
 import io.qameta.allure.Step;
 
-import pages.Mobile.LivingTabCurrency;
 import pages.Mobile.LivingTabTemperature;
 import utilities.CommonOps;
 import utilities.MobileActions;
@@ -31,21 +30,4 @@ public class MobileFlow extends CommonOps {
         MobileActions.click(LivingTabTemperature.getPressOKBtn());
     }
 
-
-    @Step("go to currency tab in living tab")
-    public static void currencyTab(){
-        MobileActions.click(LivingTabCurrency.getCurrencyBtn());
-    }
-
-    @Step("click on currency input which opens number pad")
-    public static void openNumPadCurrency(){
-        MobileActions.click(LivingTabCurrency.getMoneyInput());
-    }
-
-    @Step("press numbers in number pad for currency")
-    public static void enterNumbersToNumPadCurrency (){
-        MobileActions.click(LivingTabCurrency.getNum3InKeyBoard());
-        MobileActions.click(LivingTabCurrency.getNum5InKeyBoard());
-        MobileActions.click(LivingTabCurrency.getPressOKBtn());
-    }
 }

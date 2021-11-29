@@ -11,7 +11,6 @@ import java.time.Duration;
 
 public class LivingTabTemperature
 {
-
     protected static AppiumDriver mobileDriver;
     public LivingTabTemperature(AppiumDriver mobileDriver) {
         this.mobileDriver = mobileDriver;
@@ -45,7 +44,6 @@ public class LivingTabTemperature
     @AndroidFindBy(xpath  = "//*[@id='text1']")           //first title in living tab= Majors (top left side)
     protected static WebElement firstTitle;
 
-    //*[@text and ./parent::*[@class='androidx.appcompat.widget.LinearLayoutCompat']]
     public static WebElement getLivingBtn() {
         return LivingBtn;
     }
