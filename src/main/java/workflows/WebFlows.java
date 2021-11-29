@@ -5,7 +5,7 @@ import pages.*;
 import utilities.CommonOps;
 import utilities.UIActions;
 
-public class Flows extends CommonOps {
+public class WebFlows extends CommonOps {
 
     @Step("login")
     public void login(){

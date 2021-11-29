@@ -4,6 +4,8 @@ apache-maven-3.6.3/
 allure-2.16.1/
 allure-results/
 
+uiDesigner.xml
+
 *.apk
 *.png
 *.avi
