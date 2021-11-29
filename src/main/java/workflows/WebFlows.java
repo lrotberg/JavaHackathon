@@ -2,6 +2,7 @@ package workflows;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 import io.qameta.allure.Step;
+import org.sikuli.script.FindFailed;
 import pages.*;
 import utilities.CommonOps;
 import utilities.UIActions;
@@ -59,5 +60,17 @@ public class WebFlows extends CommonOps {
     public static void clickCreateUsersAndTeams(){
         UIActions.click(HomePage.getCreateUsersAndTeams());
     }
+
+    @Step("click to grafana fundamental page with sikuli")
+    public static void clickToGrafanaFundamentalsPageWithSikuli() throws FindFailed {
+        UIActions.clickWithSikuli("homepage.png");
+    }
+
+    @Step
+    public static void navigateToGrafanaWeb(){
+        UIActions.navigateToOriginalTab();
+    }
+
+
 
 }
