@@ -14,7 +14,6 @@ public class WebFlows extends CommonOps {
     public static void login(){
         Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
         UIActions.updateText(LoginPage.getUser(),"admin");
-        //UIActions.click(LoginPage.getPass());
         UIActions.updateText(LoginPage.getPass(),"admin");
         UIActions.click(LoginPage.getloginBtn());
     }
