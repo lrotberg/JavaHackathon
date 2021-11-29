@@ -28,7 +28,10 @@ public class HomePage{
     @FindBy(className = "css-1m4liiw")
     protected static WebElement rectMiddle;
 
-    @FindBy(className = "css-kff62q-button")
+    @FindBy(xpath = "//div[@class='css-j7qptd']")
+    protected static WebElement vectorDiv;
+
+    @FindBy(xpath = "//div[@class='css-j7qptd']/button[@class='css-kff62q-button']")
     protected static WebElement vectorBtn;
 
     @FindBy(className = "css-17abkeq")
@@ -48,6 +51,9 @@ public class HomePage{
 
     @FindBy(xpath = "((//div[@class='scrollbar-view']//*[name()='article'])[4]//a)[2]")
     protected static WebElement latestFromTheBlogNov22;
+
+    @FindBy(xpath = "//time[@datetime='Nov 22']")
+    protected static WebElement GrayTitleNov22;
 
     public static WebElement getTopRect() {
         return topRect;
@@ -105,4 +111,11 @@ public class HomePage{
         return vectorBtn;
     }
 
+    public static WebElement getGrayTitleNov22() {
+        return GrayTitleNov22;
+    }
+
+    public static WebElement getVectorDiv() {
+        return vectorDiv;
+    }
 }

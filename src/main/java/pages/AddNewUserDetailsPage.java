@@ -4,6 +4,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 public class AddNewUserDetailsPage {
 
+    @FindBy(xpath = "//div[@class='page-container page-body']/h1")
+    protected static WebElement pageTitleAddNewUser;
+
     @FindBy(how = How.XPATH, using= "//div[@class='css-1w5c5dq-input-inputWrapper']/input[@name='name']")
     protected static WebElement nameOfNewUserTxt;
 
@@ -37,5 +40,9 @@ public class AddNewUserDetailsPage {
 
     public static WebElement getCreateUserBtn() {
         return createUserBtn;
+    }
+
+    public static WebElement getPageTitleAddNewUser() {
+        return pageTitleAddNewUser;
     }
 }
