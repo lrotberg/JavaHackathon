@@ -61,6 +61,7 @@ public class CommonOps extends BasePage {
     driver.quit();
   }
 
+  @Step("Close Mobile Session")
   public void closeMobileSession() {
     mobileDriver.quit();
   }
@@ -91,8 +92,8 @@ public class CommonOps extends BasePage {
 
   @AfterClass
   public void teardown() {
-    // closeWebSession();
-    closeMobileSession();
+     closeWebSession();
+//    closeMobileSession();
   }
 
   @Step("Save Screenshot")
