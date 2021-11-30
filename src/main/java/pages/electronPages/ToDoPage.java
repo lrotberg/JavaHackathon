@@ -28,8 +28,8 @@ public class ToDoPage {
   @FindBy(css = "div.wrapper_DtvJU > div:nth-child(2) > h2")
   protected static WebElement h2NoTasks;
 
-  @FindBy(css = "div[class='draggableList_DX-a1']")
-  protected static List<WebElement> listTasks;
+  @FindBy(css = "label[class='label_5i8SP']")
+  protected static List<WebElement> listTasksText;
 
   public static WebElement getHeader() { return header; }
 
@@ -45,5 +45,5 @@ public class ToDoPage {
 
   public static WebElement getH2NoTasks() { return h2NoTasks; }
 
-  public static List<WebElement> getListTasks() { return listTasks; }
+  public static List<WebElement> getListTasksText() { return listTasksText; }
 }

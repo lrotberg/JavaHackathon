@@ -12,11 +12,16 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.sikuli.script.Screen;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -31,10 +36,27 @@ public class CommonOps extends BasePage {
 
   @Step("Open Web Session")
   public void openWebSession() {
-    if(getData("BrowserName").equalsIgnoreCase("chrome")) {
-      WebDriverManager.chromedriver().setup();
-      driver = new ChromeDriver();
+    switch (getData("BrowserName")) {
+      case "chrome":
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        break;
+      case "firefox":
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
+        break;
+      case "edge":
+        WebDriverManager.edgedriver().setup();
+        driver = new EdgeDriver();
+        break;
+      case "opera":
+        WebDriverManager.operadriver().setup();
+        driver = new OperaDriver();
+      case "safari":
+        WebDriverManager.safaridriver().setup();
+        driver = new SafariDriver();
     }
+
     driver.manage().window().maximize();
     driver.get(url);
     ManagePages.buildPages();
@@ -88,20 +110,35 @@ public class CommonOps extends BasePage {
 
   @BeforeClass
   public void startup() throws MalformedURLException {
-      if(getData("PlatformName").equalsIgnoreCase("electron")) {
+    switch (getData("PlatformName")) {
+      case "web":
+        openWebSession();
+        break;
+      case "electron":
         openElectronSession();
-      }
-//    openWebSession();
-//    openAPISession();
-//    openMobileSession();
+        break;
+      case "mobile":
+        openMobileSession();
+        break;
+      case "api":
+        openAPISession();
+        break;
+    }
+
+    softAssert = new SoftAssert();
   }
 
   @AfterClass
   public void teardown() {
-    if(getData("PlatformName").equalsIgnoreCase("electron")) {
-      closeWebSession();
+    switch (getData("PlatformName")) {
+      case "web":
+      case "electron":
+        closeWebSession();
+        break;
+      case "mobile":
+        closeMobileSession();
+        break;
     }
-//    closeMobileSession();
   }
 
   @Step("Save Screenshot")
