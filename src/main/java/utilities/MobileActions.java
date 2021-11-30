@@ -3,9 +3,8 @@ package utilities;
 import io.appium.java_client.touch.TapOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import io.qameta.allure.Step;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import pages.Mobile.LivingTabTemperature;
+import pages.mobilePages.LivingTabTemperature;
 
 public class MobileActions extends CommonOps{
 

@@ -2,7 +2,7 @@ package utilities;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.PageFactory;
-import pages.electron.ToDoPage;
+import pages.electronPages.ToDoPage;
 
 public class ManageElectronPages extends BasePage {
 

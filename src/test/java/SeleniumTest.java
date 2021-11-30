@@ -5,9 +5,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.sikuli.script.FindFailed;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.AddNewUserDetailsPage;
-import pages.HomePage;
-import pages.ServerAdminPage;
+import pages.webPages.AddNewUserDetailsPage;
+import pages.webPages.HomePage;
+import pages.webPages.ServerAdminPage;
 import utilities.CommonOps;
 import workflows.WebFlows;
 

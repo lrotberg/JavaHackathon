@@ -1,7 +1,7 @@
 package workflows;
 import io.qameta.allure.Step;
 
-import pages.Mobile.LivingTabTemperature;
+import pages.mobilePages.LivingTabTemperature;
 import utilities.CommonOps;
 import utilities.MobileActions;
 

@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.electron.ToDoPage;
+import pages.electronPages.ToDoPage;
 import utilities.CommonOps;
 import utilities.HackathonListeners;
 import workflows.ElectronFlow;

@@ -1,12 +1,8 @@
 package utilities;
 
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.PageFactory;
-import pages.*;
-import pages.Mobile.*;
-
-import java.time.Duration;
+import pages.webPages.*;
 
 
 public class ManagePages extends BasePage{

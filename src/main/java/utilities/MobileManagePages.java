@@ -1,7 +1,7 @@
 package utilities;
 import io.appium.java_client.TouchAction;
 import io.qameta.allure.Step;
-import pages.Mobile.LivingTabTemperature;
+import pages.mobilePages.LivingTabTemperature;
 
 
 public class MobileManagePages extends BasePage

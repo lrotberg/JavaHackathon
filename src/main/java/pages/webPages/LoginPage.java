@@ -1,4 +1,4 @@
-package pages;
+package pages.webPages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

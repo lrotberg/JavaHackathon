@@ -1,13 +1,9 @@
 package utilities;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.sikuli.script.FindFailed;
-import org.testng.Assert;
-import pages.HomePage;
 
 public class UIActions extends CommonOps {
 

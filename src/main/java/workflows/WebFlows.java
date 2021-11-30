@@ -3,7 +3,7 @@ package workflows;
 import com.google.common.util.concurrent.Uninterruptibles;
 import io.qameta.allure.Step;
 import org.sikuli.script.FindFailed;
-import pages.*;
+import pages.webPages.*;
 import utilities.CommonOps;
 import utilities.UIActions;
 

@@ -2,7 +2,7 @@ package workflows;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 import io.qameta.allure.Step;
-import pages.electron.ToDoPage;
+import pages.electronPages.ToDoPage;
 import utilities.CommonOps;
 import utilities.UIActions;
 
