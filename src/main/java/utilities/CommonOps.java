@@ -1,5 +1,6 @@
 package utilities;
 
+import com.google.common.util.concurrent.Uninterruptibles;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -32,6 +33,8 @@ import java.io.File;
 import java.net.MalformedURLException;
 
 import java.net.URL;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 public class CommonOps extends BasePage {
@@ -58,7 +61,6 @@ public class CommonOps extends BasePage {
         WebDriverManager.safaridriver().setup();
         driver = new SafariDriver();
     }
-
     driver.manage().window().maximize();
     driver.get(url);
     ManageWebPages.buildPages();
@@ -112,14 +114,31 @@ public class CommonOps extends BasePage {
     ManageDesktopPages.buildPages();
   }
 
+  @Step("Open DB session")
+  public void openDBSession() throws ClassNotFoundException, SQLException, InterruptedException {
+    Class.forName("com.mysql.cj.jdbc.Driver");  //Load mysql jdbc driver
+    con= DriverManager.getConnection(dbUrl,user,pass); //Create DB connection
+    Uninterruptibles.sleepUninterruptibly(20, TimeUnit.SECONDS);
+    stmt=con.createStatement(); //Create Statement Object
+    ManageDB.buildPages();
+    Uninterruptibles.sleepUninterruptibly(10, TimeUnit.SECONDS);
+    query="select * from UsersGrafana";
+    rs= stmt.executeQuery(query); //Execute the SQL Query.Store results in ResultSe
+  }
+
   @Step("Close Web Session")
   public void closeWebSession() {
     driver.quit();
   }
 
-  @Step("open Mobile Session")
+  @Step("close Mobile Session")
   public void closeMobileSession() {
     mobileDriver.quit();
+  }
+
+  @Step("close DB Session")
+  public void closeDBSession() throws SQLException {
+    con.close();
   }
 
   @Step("open desktop Session")
@@ -128,7 +147,7 @@ public class CommonOps extends BasePage {
   }
 
   @BeforeClass
-  public void startup() throws MalformedURLException {
+  public void startup() throws MalformedURLException, SQLException, ClassNotFoundException, InterruptedException {
     switch (getData("PlatformName")) {
       case "web":
         openWebSession();
@@ -145,13 +164,16 @@ public class CommonOps extends BasePage {
       case "desktop":
         openDesktopSession();
         break;
+      case "db":
+        openDBSession();
+        break;
     }
 
     softAssert = new SoftAssert();
   }
 
   @AfterClass
-  public void teardown() {
+  public void teardown() throws SQLException {
     switch (getData("PlatformName")) {
       case "web":
       case "electron":
@@ -162,6 +184,9 @@ public class CommonOps extends BasePage {
         break;
       case "desktop":
         closeDesktopSession();
+        break;
+      case "db":
+        closeDBSession();
         break;
     }
   }
