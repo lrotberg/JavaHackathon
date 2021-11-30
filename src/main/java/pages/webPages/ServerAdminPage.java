@@ -2,13 +2,12 @@ package pages.webPages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 
 import java.util.List;
 
 public class ServerAdminPage {
 
-    @FindBy(how = How.XPATH, using= "//a[@href='admin/users/create']")
+    @FindBy(xpath = "//a[@href='admin/users/create']")
     protected static WebElement newUserBtn;
 
     @FindBy(xpath = "//h1[@class='page-header__title']")

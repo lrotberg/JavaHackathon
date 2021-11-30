@@ -29,8 +29,6 @@ import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.net.MalformedURLException;
 
 import java.net.URL;
@@ -86,7 +84,7 @@ public class CommonOps extends BasePage {
     RestAssured.baseURI = url;
     request = RestAssured.given().auth().preemptive().basic("admin", "admin");
     request.header("Content-Type", "application/json");
-    params=new JSONObject();
+    params = new JSONObject();
   }
 
   @Step("Open Electron Session")
@@ -107,11 +105,11 @@ public class CommonOps extends BasePage {
   public void openDesktopSession() throws MalformedURLException {
     calcApp = "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App";
     capabilities = new DesiredCapabilities();
-    capabilities.setCapability("app",calcApp);
-    desktopDriver= new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
-    soft= new SoftAssert();
+    capabilities.setCapability("app", calcApp);
+    desktopDriver = new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
+    softAssert = new SoftAssert();
     desktopDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    ManageDestopPages.buildPages();
+    ManageDesktopPages.buildPages();
   }
 
   @Step("Close Web Session")
@@ -123,10 +121,12 @@ public class CommonOps extends BasePage {
   public void closeMobileSession() {
     mobileDriver.quit();
   }
+
   @Step("open desktop Session")
   public void closeDesktopSession() {
     desktopDriver.quit();
   }
+
   @BeforeClass
   public void startup() throws MalformedURLException {
     switch (getData("PlatformName")) {
@@ -142,10 +142,12 @@ public class CommonOps extends BasePage {
       case "api":
         openAPISession();
         break;
+      case "desktop":
+        openDesktopSession();
+        break;
     }
 
     softAssert = new SoftAssert();
-    openDesktopSession();
   }
 
   @AfterClass
@@ -158,8 +160,10 @@ public class CommonOps extends BasePage {
       case "mobile":
         closeMobileSession();
         break;
+      case "desktop":
+        closeDesktopSession();
+        break;
     }
-    closeDesktopSession();
   }
 
   @Step("Save Screenshot")
@@ -170,7 +174,7 @@ public class CommonOps extends BasePage {
 
   @Step("Read From XML")
   @Description("Read XML from file path")
-  public String getData (String nodeName) {
+  public String getData(String nodeName) {
     DocumentBuilder dBuilder;
     Document doc = null;
     File fXmlFile = new File("config.xml");
@@ -178,8 +182,7 @@ public class CommonOps extends BasePage {
     try {
       dBuilder = dbFactory.newDocumentBuilder();
       doc = dBuilder.parse(fXmlFile);
-    }
-    catch(Exception e) {
+    } catch (Exception e) {
       System.out.println("Exception in reading XML file: " + e);
     }
     doc.getDocumentElement().normalize();

@@ -8,15 +8,17 @@ import java.io.File;
 
 public class HackathonListeners extends CommonOps implements ITestListener {
   @Override
-  public void onStart(ITestContext execution) { System.out.println("------- Starting testing execution -------"); }
+  public void onStart(ITestContext execution) {
+    System.out.println("------- Starting testing execution -------");
+  }
 
   @Override
-  public void onFinish(ITestContext execution){
+  public void onFinish(ITestContext execution) {
     System.out.println("------- Finished testing execution -------");
   }
 
   @Override
-  public void onTestStart(ITestResult test){
+  public void onTestStart(ITestResult test) {
     System.out.printf("------- Starting recording for test %s -------\n", test.getName());
     try {
       MonteScreenRecorder.startRecord(test.getName());
@@ -26,7 +28,7 @@ public class HackathonListeners extends CommonOps implements ITestListener {
   }
 
   @Override
-  public void onTestSuccess(ITestResult test){
+  public void onTestSuccess(ITestResult test) {
     System.out.printf("------- Test: '%s' - passed -------\n", test.getName());
 
     try {
@@ -37,13 +39,13 @@ public class HackathonListeners extends CommonOps implements ITestListener {
 
     File file = new File("./test-recordings/" + test.getName() + ".avi");
 
-    if(file.delete()) {
+    if (file.delete()) {
       System.out.printf("------- Recording of test %s was deleted -------\n", test.getName());
     }
   }
 
   @Override
-  public void onTestFailure(ITestResult test){
+  public void onTestFailure(ITestResult test) {
     System.out.printf("------- Test: '%s' - failed -------\n", test.getName());
     try {
       MonteScreenRecorder.stopRecord();
@@ -60,7 +62,7 @@ public class HackathonListeners extends CommonOps implements ITestListener {
   }
 
   @Override
-  public void onTestSkipped(ITestResult test){
+  public void onTestSkipped(ITestResult test) {
     System.out.printf("------- Test: '%s' - skipped -------\n", test.getName());
 
     try {
@@ -71,7 +73,7 @@ public class HackathonListeners extends CommonOps implements ITestListener {
 
     File file = new File("./test-recordings/" + test.getName() + ".avi");
 
-    if(file.delete()) {
+    if (file.delete()) {
       System.out.printf("------- Recording of test %s was deleted -------\n", test.getName());
     }
   }

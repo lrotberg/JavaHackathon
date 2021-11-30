@@ -8,10 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
 
-public class LivingTabTemperature
+public class LivingTabTemperaturePage
 {
     protected static AppiumDriver mobileDriver;
-    public LivingTabTemperature(AppiumDriver mobileDriver) {
+    public LivingTabTemperaturePage(AppiumDriver mobileDriver) {
         this.mobileDriver = mobileDriver;
         PageFactory.initElements(new AppiumFieldDecorator(mobileDriver, Duration.ofSeconds(3)),this);
     }

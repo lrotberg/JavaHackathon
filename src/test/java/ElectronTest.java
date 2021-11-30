@@ -1,16 +1,12 @@
 import com.google.common.util.concurrent.Uninterruptibles;
 import extentions.ElectronVerifications;
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.electronPages.ToDoPage;
 import utilities.CommonOps;
 import utilities.HackathonListeners;
 import workflows.ElectronFlow;
 
-import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
 @Listeners(HackathonListeners.class)

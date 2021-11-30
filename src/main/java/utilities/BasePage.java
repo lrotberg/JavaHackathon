@@ -17,7 +17,7 @@ public class BasePage {
 
   protected static WebDriver driver;
   protected static Actions action;
-  protected static String url="http://localhost:3000";
+  protected static String url = "http://localhost:3000";
   protected static RequestSpecification request;
   protected static Response response;
   protected static Screen screen;
@@ -31,6 +31,5 @@ public class BasePage {
   protected static JSONObject params;
   protected static String calcApp;
   protected static WebDriver desktopDriver;
-  protected static SoftAssert soft;
   protected static SoftAssert softAssert;
 }

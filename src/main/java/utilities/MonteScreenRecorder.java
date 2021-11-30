@@ -18,10 +18,10 @@ import static org.monte.media.AudioFormatKeys.MediaTypeKey;
 import static org.monte.media.AudioFormatKeys.MimeTypeKey;
 import static org.monte.media.VideoFormatKeys.*;
 
-public class MonteScreenRecorder extends ScreenRecorder
-{
+public class MonteScreenRecorder extends ScreenRecorder {
   public static ScreenRecorder screenRecorder;
   public String name;
+
   public MonteScreenRecorder(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
                              Format screenFormat, Format mouseFormat, Format audioFormat, File movieFolder, String name)
           throws IOException, AWTException {
@@ -33,8 +33,7 @@ public class MonteScreenRecorder extends ScreenRecorder
   protected File createMovieFile(Format fileFormat) throws IOException {
     if (!movieFolder.exists()) {
       movieFolder.mkdirs();
-    }
-    else if (!movieFolder.isDirectory()) {
+    } else if (!movieFolder.isDirectory()) {
       throw new IOException("\"" + movieFolder + "\" is not a directory.");
     }
 //    System.out.println("Recorded Screen Cast File is Now Created");

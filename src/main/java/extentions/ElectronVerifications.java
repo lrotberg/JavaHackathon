@@ -1,7 +1,6 @@
 package extentions;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages.electronPages.ToDoPage;
 import utilities.CommonOps;
@@ -17,7 +16,7 @@ public class ElectronVerifications extends CommonOps {
 
   @Step("Convert Style to Hex Color")
   private static String convertToHex() {
-    String[] rgbColor = ToDoPage.getHeader().getAttribute("style").replaceAll("[a-zA-Z:(); ]","").split(",");
+    String[] rgbColor = ToDoPage.getHeader().getAttribute("style").replaceAll("[a-zA-Z:(); ]", "").split(",");
     Color color = new Color(Integer.parseInt(rgbColor[0]), Integer.parseInt(rgbColor[1]), Integer.parseInt(rgbColor[2]));
     return Integer.toHexString(color.getRGB()).substring(2).toUpperCase();
   }
