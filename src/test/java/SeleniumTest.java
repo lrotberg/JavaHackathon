@@ -9,6 +9,7 @@ import pages.webPages.AddNewUserDetailsPage;
 import pages.webPages.HomePage;
 import pages.webPages.ServerAdminPage;
 import utilities.CommonOps;
+import utilities.ManageDDT;
 import workflows.WebFlows;
 
 public class SeleniumTest extends CommonOps {
@@ -66,14 +67,11 @@ public class SeleniumTest extends CommonOps {
         Assert.assertEquals(AddNewUserDetailsPage.getPageTitleAddNewUser().getText(),"Add new user");
     }
 
-    @Test(priority = 7,dependsOnMethods = {"enterDataToLoginPage","clickToServerAdminNavBar","clickCreateNewUserBtnAdminServer"})
+    @Test(priority = 7,dependsOnMethods = {"enterDataToLoginPage","clickToServerAdminNavBar","clickCreateNewUserBtnAdminServer"},dataProvider = "data-provider", dataProviderClass = ManageDDT.class)
     @Description("create new user")
-    public void createNewUserServerAdmin() throws InterruptedException {
-        WebFlows.createNewUser();
+    public void createNewUserServerAdmin(String one, String two,String three,String four) throws InterruptedException {
+        WebFlows.createNewUser(one, two, three, four);
         Thread.sleep(3000);
-        Assert.assertEquals(ServerAdminPage.getLoginColTeam4().get(1).getText(),"team4");
+        Assert.assertTrue(WebFlows.checkUserCreated());
     }
-
-
-
 }

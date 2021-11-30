@@ -19,7 +19,11 @@ import org.sikuli.script.Screen;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.w3c.dom.Document;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -89,10 +93,15 @@ public class CommonOps extends BasePage {
 
   @BeforeClass
   public void startup() throws MalformedURLException {
-//    openWebSession();
+
+//    if (getData("PlatformType")=="web" { initWeb() {
+
+
+
+    openWebSession();
 //    openAPISession();
 //    openMobileSession();
-    openElectronSession();
+ //   openElectronSession();
   }
 
   @AfterClass
@@ -107,18 +116,21 @@ public class CommonOps extends BasePage {
     return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
   }
 
-  @Step("Read From CSV")
-  @Description("Read CSV from file path")
-  public static List<List<String>> readCSV(String filePath) {
-    List<List<String>> records = new ArrayList<>();
-    try (CSVReader csvReader = new CSVReader(new FileReader(filePath))) {
-      String[] values;
-      while ((values = csvReader.readNext()) != null) {
-        records.add(Arrays.asList(values));
-      }
-    } catch (IOException | CsvValidationException e) {
-      e.printStackTrace();
+  @Step("Read From XML")
+  @Description("Read XML from file path")
+  public String getData (String nodeName) {
+    DocumentBuilder dBuilder;
+    Document doc = null;
+    File fXmlFile = new File("config.xml");
+    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    try {
+      dBuilder = dbFactory.newDocumentBuilder();
+      doc = dBuilder.parse(fXmlFile);
     }
-    return records;
+    catch(Exception e) {
+      System.out.println("Exception in reading XML file: " + e);
+    }
+    doc.getDocumentElement().normalize();
+    return doc.getElementsByTagName(nodeName).item(0).getTextContent();
   }
 }

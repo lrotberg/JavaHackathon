@@ -2,6 +2,7 @@ package workflows;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 import io.qameta.allure.Step;
+import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
 import pages.webPages.*;
 import utilities.CommonOps;
@@ -39,12 +40,12 @@ public class WebFlows extends CommonOps {
         UIActions.click(ServerAdminPage.getNewUserBtn());
     }
 
-    @Step("create new user")
-    public static void createNewUser(){
-        UIActions.updateText(AddNewUserDetailsPage.getNameOfNewUserTxt(),"team4");
-        UIActions.updateText(AddNewUserDetailsPage.getEmailOfNewUserTxt(),"team4@gmail.com");
-        UIActions.updateText(AddNewUserDetailsPage.getUserNameOfNewUserTxt(),"team4");
-        UIActions.updateText(AddNewUserDetailsPage.getPasswordOfNameNewUserTxt(),"team4");
+    @Step("create new user- getting data from csv file")
+    public static void createNewUser(String Name, String Email, String userName, String pass){
+        UIActions.updateText(AddNewUserDetailsPage.getNameOfNewUserTxt(),Name);
+        UIActions.updateText(AddNewUserDetailsPage.getEmailOfNewUserTxt(),Email);
+        UIActions.updateText(AddNewUserDetailsPage.getUserNameOfNewUserTxt(),userName);
+        UIActions.updateText(AddNewUserDetailsPage.getPasswordOfNameNewUserTxt(),pass);
         UIActions.click(AddNewUserDetailsPage.getCreateUserBtn());
 
     }
@@ -70,6 +71,11 @@ public class WebFlows extends CommonOps {
         UIActions.navigateToOriginalTab();
     }
 
+    @Step
+    public static Boolean checkUserCreated()
+    {
+        return UIActions.checkUserBeenCreated();
+    }
 
 
 }
