@@ -30,7 +30,7 @@ public class BasePage {
   protected static ChromeOptions chromeOptions;
   protected static JSONObject params;
   protected static String calcApp;
-  protected static SoftAssert soft;
   protected static WebDriver desktopDriver;
-
+  protected static SoftAssert soft;
+  protected static SoftAssert softAssert;
 }

@@ -1,4 +1,5 @@
 import com.google.common.util.concurrent.Uninterruptibles;
+import extentions.ElectronVerifications;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import org.testng.Assert;
@@ -20,19 +21,15 @@ public class ElectronTest extends CommonOps {
   public void test01_changeColor() {
     Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
     ElectronFlow.changeHeaderColor("DD22DD");
-    verifyHeaderColor("DD22DD");
+    ElectronVerifications.verifyHeaderColor("DD22DD");
   }
 
-  @Step("Verify Header Color")
-  public void verifyHeaderColor(String expectedColor) {
-    String actualColor = convertToHex();
-    Assert.assertEquals(actualColor, expectedColor);
+  @Test(description = "Add ToDo")
+  @Description("This test should add a ToDos and verify it was added")
+  public void test02_addToDo() {
+    ElectronFlow.addToDo("Buy cat food");
+    ElectronVerifications.verifyToDoAddition("Buy cat food");
+    Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
   }
 
-  @Step("Convert Style to Hex Color")
-  public String convertToHex() {
-    String[] rgbColor = ToDoPage.getHeader().getAttribute("style").replaceAll("[a-zA-Z:(); ]","").split(",");
-    Color color = new Color(Integer.parseInt(rgbColor[0]), Integer.parseInt(rgbColor[1]), Integer.parseInt(rgbColor[2]));
-    return Integer.toHexString(color.getRGB()).substring(2).toUpperCase();
-  }
 }

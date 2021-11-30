@@ -13,11 +13,6 @@ public class UIActions extends CommonOps {
         element.click();
     }
 
-//    @Step("Double Click")
-//    public static void doubleClick(WebElement element) {
-//        action.doubleClick().build().perform();
-//    }
-
     @Step("Send Keys")
     public static void updateText(WebElement element, String str) {
         element.sendKeys(str);
