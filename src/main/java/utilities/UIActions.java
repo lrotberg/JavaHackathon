@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
+import pages.webPages.ServerAdminPage;
 
 public class UIActions extends CommonOps {
 
@@ -57,5 +58,18 @@ public class UIActions extends CommonOps {
         }
         driver.close();
         driver.switchTo().window(originalWindowID);
+    }
+
+    @Step("getting the expected result for assert")
+    public static Boolean checkUserBeenCreated()
+    {
+        for (WebElement row: ServerAdminPage.getLoginColTeam4())
+        {
+            if (row.getText().equals("team4")) {
+                System.out.println(row.getText());
+                return true;
+            }
+        }
+        return false;
     }
 }

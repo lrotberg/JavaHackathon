@@ -22,6 +22,8 @@ import org.w3c.dom.Document;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 import java.net.URL;
@@ -88,12 +90,15 @@ public class CommonOps extends BasePage {
 
   @BeforeClass
   public void startup() throws MalformedURLException {
-      if(getData("PlatformName").equalsIgnoreCase("electron")) {
-        openElectronSession();
-      }
-//    openWebSession();
+
+//    if (getData("PlatformType")=="web" { initWeb() {
+
+
+
+    openWebSession();
 //    openAPISession();
 //    openMobileSession();
+ //   openElectronSession();
   }
 
   @AfterClass
@@ -115,7 +120,7 @@ public class CommonOps extends BasePage {
   public String getData (String nodeName) {
     DocumentBuilder dBuilder;
     Document doc = null;
-    File fXmlFile = new File("./ConfigFiles/config.xml");
+    File fXmlFile = new File("config.xml");
     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
     try {
       dBuilder = dbFactory.newDocumentBuilder();
