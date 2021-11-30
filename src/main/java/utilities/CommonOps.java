@@ -165,6 +165,7 @@ public class CommonOps extends BasePage {
         openDesktopSession();
         break;
       case "db":
+        openWebSession();
         openDBSession();
         break;
     }
@@ -174,21 +175,23 @@ public class CommonOps extends BasePage {
 
   @AfterClass
   public void teardown() throws SQLException {
-    switch (getData("PlatformName")) {
-      case "web":
-      case "electron":
-        closeWebSession();
-        break;
-      case "mobile":
-        closeMobileSession();
-        break;
-      case "desktop":
-        closeDesktopSession();
-        break;
-      case "db":
-        closeDBSession();
-        break;
-    }
+    closeWebSession();
+    closeDBSession();
+//    switch (getData("PlatformName")) {
+//      case "web":
+//      case "electron":
+//        closeWebSession();
+//        break;
+//      case "mobile":
+//        closeMobileSession();
+//        break;
+//      case "desktop":
+//        closeDesktopSession();
+//        break;
+//      case "db":
+//        closeDBSession();
+//        break;
+//    }
   }
 
   @Step("Save Screenshot")

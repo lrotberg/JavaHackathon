@@ -41,6 +41,7 @@ public class WebFlows extends CommonOps {
 
   @Step("Create New User - Getting Data From CSV File")
   public static void createNewUser(String Name, String Email, String userName, String pass) {
+    System.out.println(userName);
     UIActions.updateText(AddNewUserDetailsPage.getNameOfNewUserTxt(), Name);
     UIActions.updateText(AddNewUserDetailsPage.getEmailOfNewUserTxt(), Email);
     UIActions.updateText(AddNewUserDetailsPage.getUserNameOfNewUserTxt(), userName);

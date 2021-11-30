@@ -1,3 +1,4 @@
+import extentions.DBActions;
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,8 +10,11 @@ import pages.webPages.AddNewUserDetailsPage;
 import pages.webPages.HomePage;
 import pages.webPages.ServerAdminPage;
 import utilities.CommonOps;
+import utilities.JDBC;
 import utilities.ManageDDT;
 import workflows.WebFlows;
+
+import java.sql.SQLException;
 
 public class SeleniumTest extends CommonOps {
 
@@ -73,5 +77,13 @@ public class SeleniumTest extends CommonOps {
     WebFlows.createNewUser(one, two, three, four);
     Thread.sleep(3000);
     Assert.assertTrue(WebFlows.checkUserCreated());
+  }
+
+  @Test(priority = 8,dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar", "clickCreateNewUserBtnAdminServer"})
+  @Description("Test JDBC")
+  public void testJDBC() throws SQLException, InterruptedException {
+    JDBC.readFromDB();
+    Thread.sleep(15000);
+    Assert.assertTrue(DBActions.checkUserCreated());
   }
 }
