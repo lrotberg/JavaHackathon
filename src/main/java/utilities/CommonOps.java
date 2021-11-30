@@ -61,7 +61,7 @@ public class CommonOps extends BasePage {
 
     driver.manage().window().maximize();
     driver.get(url);
-    ManagePages.buildPages();
+    ManageWebPages.buildPages();
     action = new Actions(driver);
     screen = new Screen();
   }

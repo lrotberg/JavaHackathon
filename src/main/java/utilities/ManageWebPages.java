@@ -5,7 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 import pages.webPages.*;
 
 
-public class ManagePages extends BasePage {
+public class ManageWebPages extends CommonOps {
 
   private static LoginPage loginPage;
   private static HomePage homePage;
