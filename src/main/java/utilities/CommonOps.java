@@ -35,8 +35,21 @@ public class CommonOps extends BasePage {
     screen = new Screen();
   }
 
-  @Step("init API")
-  public void initAPI() {
+  @Step("open Mobile Session")
+  public void openMobileSession() throws MalformedURLException {
+    capabilities = new DesiredCapabilities();
+    capabilities.setCapability("reportDirectory", reportDirectory);
+    capabilities.setCapability("reportFormat", reportFormat);
+    capabilities.setCapability("testName", testName);
+    capabilities.setCapability(MobileCapabilityType.UDID, "R58R34SLXBD");
+    capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "kr.sira.unit");
+    capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".Intro");
+    mobileDriver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
+    MobileManagePages.buildPagesAppium();
+  }
+
+  @Step("Open API Session")
+  public void openAPISession() {
     RestAssured.baseURI = url;
     request = RestAssured.given().auth().preemptive().basic("admin", "admin");
     request.header("Content-Type", "application/json");
@@ -61,32 +74,16 @@ public class CommonOps extends BasePage {
     driver.quit();
   }
 
-  @Step("Close Mobile Session")
+  @Step("open Mobile Session")
   public void closeMobileSession() {
     mobileDriver.quit();
-  }
-
-
-  @Step("open mobile app")
-  public void openApp() throws MalformedURLException {
-    capabilities = new DesiredCapabilities();
-    capabilities.setCapability("reportDirectory", reportDirectory);
-    capabilities.setCapability("reportFormat", reportFormat);
-    capabilities.setCapability("testName", testName);
-    capabilities.setCapability(MobileCapabilityType.UDID, "R58R34SLXBD");
-    capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "kr.sira.unit");
-    capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".Intro");
-    mobileDriver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
-    MobileManagePages.buildPagesAppium();
-
-
   }
 
   @BeforeClass
   public void startup() throws MalformedURLException {
 //    openWebSession();
-//    initAPI();
-//    openApp();
+//    openAPISession();
+//    openMobileSession();
     openElectronSession();
   }
 
