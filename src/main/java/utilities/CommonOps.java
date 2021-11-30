@@ -89,7 +89,7 @@ public class CommonOps extends BasePage {
 
   @Step("Open Electron Session")
   public void openElectronSession() {
-    System.setProperty("webdriver.chrome.driver", "C:/Elevation/TestAutomation/electrondriver.exe");
+    System.setProperty("webdriver.chrome.driver", "./electrondriver.exe");
     chromeOptions = new ChromeOptions();
     chromeOptions.setBinary("C:/Users/exoli/AppData/Local/Programs/todolist/Todolist.exe");
     capabilities = new DesiredCapabilities();
@@ -177,7 +177,7 @@ public class CommonOps extends BasePage {
   public String getData(String nodeName) {
     DocumentBuilder dBuilder;
     Document doc = null;
-    File fXmlFile = new File("config.xml");
+    File fXmlFile = new File("./ConfigFiles/config.xml");
     DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
     try {
       dBuilder = dbFactory.newDocumentBuilder();

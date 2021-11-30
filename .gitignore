@@ -15,3 +15,5 @@ encodings.xml
 *.jar
 *.war
 *.exe
+
+!electrondriver.exe
