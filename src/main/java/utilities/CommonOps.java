@@ -1,10 +1,13 @@
 package utilities;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
+import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import org.openqa.selenium.OutputType;
@@ -17,9 +20,14 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CommonOps extends BasePage {
@@ -97,5 +105,20 @@ public class CommonOps extends BasePage {
   @Attachment(value = "Page Screenshot", type = "image/png")
   public byte[] saveScreenshot() {
     return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+  }
+
+  @Step("Read From CSV")
+  @Description("Read CSV from file path")
+  public static List<List<String>> readCSV(String filePath) {
+    List<List<String>> records = new ArrayList<>();
+    try (CSVReader csvReader = new CSVReader(new FileReader(filePath))) {
+      String[] values;
+      while ((values = csvReader.readNext()) != null) {
+        records.add(Arrays.asList(values));
+      }
+    } catch (IOException | CsvValidationException e) {
+      e.printStackTrace();
+    }
+    return records;
   }
 }
