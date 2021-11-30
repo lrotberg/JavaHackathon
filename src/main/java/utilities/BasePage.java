@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.sikuli.script.Screen;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.asserts.SoftAssert;
 
 public class BasePage {
 
@@ -28,4 +29,8 @@ public class BasePage {
   protected static DesiredCapabilities capabilities;
   protected static ChromeOptions chromeOptions;
   protected static JSONObject params;
+  protected static String calcApp;
+  protected static SoftAssert soft;
+  protected static WebDriver desktopDriver;
+
 }

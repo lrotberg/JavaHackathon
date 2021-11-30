@@ -3,6 +3,7 @@ package utilities;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.windows.WindowsDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Description;
@@ -18,6 +19,7 @@ import org.sikuli.script.Screen;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -80,6 +82,17 @@ public class CommonOps extends BasePage {
     ManageElectronPages.buildPages();
   }
 
+  @Step("Open Desktop Session")
+  public void openDesktopSession() throws MalformedURLException {
+    calcApp = "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App";
+    capabilities = new DesiredCapabilities();
+    capabilities.setCapability("app",calcApp);
+    desktopDriver= new WindowsDriver(new URL("http://127.0.0.1:4723"), capabilities);
+    soft= new SoftAssert();
+    desktopDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    ManageDestopPages.buildPages();
+  }
+
   @Step("Close Web Session")
   public void closeWebSession() {
     driver.quit();
@@ -89,18 +102,27 @@ public class CommonOps extends BasePage {
   public void closeMobileSession() {
     mobileDriver.quit();
   }
-
+  @Step("open desktop Session")
+  public void closeDesktopSession() {
+    desktopDriver.quit();
+  }
   @BeforeClass
   public void startup() throws MalformedURLException {
-//    openWebSession();
-    openAPISession();
+
+//    if (getData("PlatformType")=="web" { initWeb() {
+
+
+    openDesktopSession();
+//   openWebSession();
+//    openAPISession();
 //    openMobileSession();
 //    openElectronSession();
   }
 
   @AfterClass
   public void teardown() {
-     //closeWebSession();
+    closeDesktopSession();
+  //   closeWebSession();
 //    closeMobileSession();
   }
 
