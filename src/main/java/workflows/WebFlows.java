@@ -46,13 +46,11 @@ public class WebFlows extends CommonOps {
         UIActions.updateText(AddNewUserDetailsPage.getUserNameOfNewUserTxt(),"team4");
         UIActions.updateText(AddNewUserDetailsPage.getPasswordOfNameNewUserTxt(),"team4");
         UIActions.click(AddNewUserDetailsPage.getCreateUserBtn());
-
     }
 
     @Step("click right vector")
     public static void clickRightVector(){
         UIActions.moveToElement(HomePage.getVectorBtn());
-        //UIActions.click(HomePage.getVectorBtn());
     }
 
     @Step("click create users and teams")
@@ -69,7 +67,5 @@ public class WebFlows extends CommonOps {
     public static void navigateToGrafanaWeb(){
         UIActions.navigateToOriginalTab();
     }
-
-
 
 }
