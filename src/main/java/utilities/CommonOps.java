@@ -8,6 +8,7 @@ import io.qameta.allure.Attachment;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
+import org.json.simple.JSONObject;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -62,6 +63,7 @@ public class CommonOps extends BasePage {
     RestAssured.baseURI = url;
     request = RestAssured.given().auth().preemptive().basic("admin", "admin");
     request.header("Content-Type", "application/json");
+    params=new JSONObject();
   }
 
   @Step("Open Electron Session")
@@ -90,22 +92,15 @@ public class CommonOps extends BasePage {
 
   @BeforeClass
   public void startup() throws MalformedURLException {
-
-//    if (getData("PlatformType")=="web" { initWeb() {
-
-
-
-    openWebSession();
-//    openAPISession();
+//    openWebSession();
+    openAPISession();
 //    openMobileSession();
- //   openElectronSession();
+//    openElectronSession();
   }
 
   @AfterClass
   public void teardown() {
-    if(getData("PlatformName").equalsIgnoreCase("electron")) {
-      closeWebSession();
-    }
+     //closeWebSession();
 //    closeMobileSession();
   }
 
