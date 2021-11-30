@@ -47,13 +47,11 @@ public class WebFlows extends CommonOps {
         UIActions.updateText(AddNewUserDetailsPage.getUserNameOfNewUserTxt(),userName);
         UIActions.updateText(AddNewUserDetailsPage.getPasswordOfNameNewUserTxt(),pass);
         UIActions.click(AddNewUserDetailsPage.getCreateUserBtn());
-
     }
 
     @Step("click right vector")
     public static void clickRightVector(){
         UIActions.moveToElement(HomePage.getVectorBtn());
-        //UIActions.click(HomePage.getVectorBtn());
     }
 
     @Step("click create users and teams")
