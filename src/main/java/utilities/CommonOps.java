@@ -39,26 +39,6 @@ import java.util.concurrent.TimeUnit;
 
 public class CommonOps extends BasePage {
 
-  @BeforeClass
-  public void startup() throws MalformedURLException, SQLException, ClassNotFoundException, InterruptedException {
-    openDBSession();
-//    if(getData("PlatformName").equalsIgnoreCase("electron")) {
-//      openElectronSession();
-//    }
-//    openWebSession();
-//    openAPISession();
-//    openMobileSession();
-  }
-
-  @AfterClass
-  public void teardown() throws SQLException {
-    closeDBSession();
-//    if(getData("PlatformName").equalsIgnoreCase("electron")) {
-//      closeWebSession();
-//    }
-//    closeMobileSession();
-  }
-
   @Step("Open Web Session")
   public void openWebSession() {
     switch (getData("BrowserName")) {
@@ -159,13 +139,15 @@ public class CommonOps extends BasePage {
   @Step("close DB Session")
   public void closeDBSession() throws SQLException {
     con.close();
+  }
+
   @Step("open desktop Session")
   public void closeDesktopSession() {
     desktopDriver.quit();
   }
 
   @BeforeClass
-  public void startup() throws MalformedURLException {
+  public void startup() throws MalformedURLException, SQLException, ClassNotFoundException, InterruptedException {
     switch (getData("PlatformName")) {
       case "web":
         openWebSession();
@@ -182,13 +164,16 @@ public class CommonOps extends BasePage {
       case "desktop":
         openDesktopSession();
         break;
+      case "db":
+        openDBSession();
+        break;
     }
 
     softAssert = new SoftAssert();
   }
 
   @AfterClass
-  public void teardown() {
+  public void teardown() throws SQLException {
     switch (getData("PlatformName")) {
       case "web":
       case "electron":
@@ -199,6 +184,9 @@ public class CommonOps extends BasePage {
         break;
       case "desktop":
         closeDesktopSession();
+        break;
+      case "db":
+        closeDBSession();
         break;
     }
   }
