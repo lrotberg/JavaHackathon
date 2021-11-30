@@ -1,7 +1,5 @@
 package utilities;
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -19,23 +17,24 @@ import org.sikuli.script.Screen;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.w3c.dom.Document;
 
-import java.io.FileReader;
-import java.io.IOException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
 import java.net.MalformedURLException;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CommonOps extends BasePage {
 
   @Step("Open Web Session")
   public void openWebSession() {
-    WebDriverManager.chromedriver().setup();
-    driver = new ChromeDriver();
+    if(getData("BrowserName").equalsIgnoreCase("chrome")) {
+      WebDriverManager.chromedriver().setup();
+      driver = new ChromeDriver();
+    }
     driver.manage().window().maximize();
     driver.get(url);
     ManagePages.buildPages();
@@ -89,15 +88,19 @@ public class CommonOps extends BasePage {
 
   @BeforeClass
   public void startup() throws MalformedURLException {
+      if(getData("PlatformName").equalsIgnoreCase("electron")) {
+        openElectronSession();
+      }
 //    openWebSession();
 //    openAPISession();
 //    openMobileSession();
-    openElectronSession();
   }
 
   @AfterClass
   public void teardown() {
-     closeWebSession();
+    if(getData("PlatformName").equalsIgnoreCase("electron")) {
+      closeWebSession();
+    }
 //    closeMobileSession();
   }
 
@@ -107,18 +110,21 @@ public class CommonOps extends BasePage {
     return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
   }
 
-  @Step("Read From CSV")
-  @Description("Read CSV from file path")
-  public static List<List<String>> readCSV(String filePath) {
-    List<List<String>> records = new ArrayList<>();
-    try (CSVReader csvReader = new CSVReader(new FileReader(filePath))) {
-      String[] values;
-      while ((values = csvReader.readNext()) != null) {
-        records.add(Arrays.asList(values));
-      }
-    } catch (IOException | CsvValidationException e) {
-      e.printStackTrace();
+  @Step("Read From XML")
+  @Description("Read XML from file path")
+  public String getData (String nodeName) {
+    DocumentBuilder dBuilder;
+    Document doc = null;
+    File fXmlFile = new File("./ConfigFiles/config.xml");
+    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    try {
+      dBuilder = dbFactory.newDocumentBuilder();
+      doc = dBuilder.parse(fXmlFile);
     }
-    return records;
+    catch(Exception e) {
+      System.out.println("Exception in reading XML file: " + e);
+    }
+    doc.getDocumentElement().normalize();
+    return doc.getElementsByTagName(nodeName).item(0).getTextContent();
   }
 }
