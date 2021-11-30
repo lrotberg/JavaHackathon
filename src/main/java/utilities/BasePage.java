@@ -11,6 +11,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.sikuli.script.Screen;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public class BasePage {
 
   protected static WebDriver driver;
@@ -26,4 +30,14 @@ public class BasePage {
   protected static TouchAction touch;
   protected static DesiredCapabilities capabilities;
   protected static ChromeOptions chromeOptions;
+
+  //DB
+  //protected static String dbUrl="https://www.phpmyadmin.co/index.php"; //connect url
+  protected static String dbUrl="jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6455269";//connect url
+  protected static String user="sql6455269",pass="zflL2lQxl8"; //DB Username&password
+  protected static String query;
+  protected static String myName,myEmail,myUserName,myPassword;
+  protected static Connection con;
+  protected static Statement stmt;
+  protected static ResultSet rs;
 }

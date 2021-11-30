@@ -1,5 +1,6 @@
 package utilities;
 
+import com.google.common.util.concurrent.Uninterruptibles;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
@@ -25,9 +26,31 @@ import java.io.File;
 import java.net.MalformedURLException;
 
 import java.net.URL;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 public class CommonOps extends BasePage {
+
+  @BeforeClass
+  public void startup() throws MalformedURLException, SQLException, ClassNotFoundException, InterruptedException {
+    openDBSession();
+//    if(getData("PlatformName").equalsIgnoreCase("electron")) {
+//      openElectronSession();
+//    }
+//    openWebSession();
+//    openAPISession();
+//    openMobileSession();
+  }
+
+  @AfterClass
+  public void teardown() throws SQLException {
+    closeDBSession();
+//    if(getData("PlatformName").equalsIgnoreCase("electron")) {
+//      closeWebSession();
+//    }
+//    closeMobileSession();
+  }
 
   @Step("Open Web Session")
   public void openWebSession() {
@@ -76,33 +99,34 @@ public class CommonOps extends BasePage {
     ManageElectronPages.buildPages();
   }
 
+  @Step("Open DB session")
+  public void openDBSession() throws ClassNotFoundException, SQLException, InterruptedException {
+    Class.forName("com.mysql.cj.jdbc.Driver");  //Load mysql jdbc driver
+    con= DriverManager.getConnection(dbUrl,user,pass); //Create DB connection
+    Uninterruptibles.sleepUninterruptibly(20, TimeUnit.SECONDS);
+    stmt=con.createStatement(); //Create Statement Object
+    ManageDB.buildPages();
+    Uninterruptibles.sleepUninterruptibly(10, TimeUnit.SECONDS);
+    query="select * from UsersGrafana";
+    rs= stmt.executeQuery(query); //Execute the SQL Query.Store results in ResultSe
+  }
+
   @Step("Close Web Session")
   public void closeWebSession() {
     driver.quit();
   }
 
-  @Step("open Mobile Session")
+  @Step("close Mobile Session")
   public void closeMobileSession() {
     mobileDriver.quit();
   }
 
-  @BeforeClass
-  public void startup() throws MalformedURLException {
-      if(getData("PlatformName").equalsIgnoreCase("electron")) {
-        openElectronSession();
-      }
-//    openWebSession();
-//    openAPISession();
-//    openMobileSession();
+  @Step("close DB Session")
+  public void closeDBSession() throws SQLException {
+    con.close();
   }
 
-  @AfterClass
-  public void teardown() {
-    if(getData("PlatformName").equalsIgnoreCase("electron")) {
-      closeWebSession();
-    }
-//    closeMobileSession();
-  }
+
 
   @Step("Save Screenshot")
   @Attachment(value = "Page Screenshot", type = "image/png")
