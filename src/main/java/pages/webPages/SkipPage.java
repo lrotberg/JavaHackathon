@@ -1,6 +1,5 @@
 package pages.webPages;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -30,6 +29,5 @@ public class SkipPage {
         return submitBtn;
     }
 
-    @Step("skip button")
     public static WebElement getSkipBtn() { return skipBtn; }
 }
