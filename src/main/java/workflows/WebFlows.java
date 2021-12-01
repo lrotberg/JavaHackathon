@@ -52,12 +52,12 @@ public class WebFlows extends CommonOps {
     UIActions.moveToElement(homePage.getVectorBtn());
   }
 
-  @Step("Move to cCeate Users and Teams")
+  @Step("Move to Create Users and Teams")
   public static void clickCreateUsersAndTeams() {
     UIActions.click(homePage.getCreateUsersAndTeams());
   }
 
-  @Step("Sikuli Click Grafana Home Page") //TODO: Ask Rowan how to fail tests when using try/catch
+  @Step("Sikuli Click Grafana Home Page")
   public static void clickToGrafanaFundamentalsPageWithSikuli() throws FindFailed {
     UIActions.clickWithSikuli("homepage.png");
   }

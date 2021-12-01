@@ -17,3 +17,4 @@ encodings.xml
 *.exe
 
 !electrondriver.exe
+!homepage.png
