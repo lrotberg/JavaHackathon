@@ -29,7 +29,7 @@ public class WebTests extends CommonOps {
 
   @Test(priority = 2, dependsOnMethods = "enterDataToLoginPage")
   @Description("click Grafana fundamentals page button with sikuli")
-  public void clickGrafanaFundamentalsPage() throws FindFailed, InterruptedException {
+  public void clickGrafanaFundamentalsPage() throws FindFailed {
     Uninterruptibles.sleepUninterruptibly(10, TimeUnit.SECONDS);
     WebFlows.clickToGrafanaFundamentalsPageWithSikuli();
     Uninterruptibles.sleepUninterruptibly(8, TimeUnit.SECONDS);
@@ -62,15 +62,7 @@ public class WebTests extends CommonOps {
     Assert.assertEquals(serverAdminPage.getPageTitleAdminServer().getText(), "Server Admin");
   }
 
-  @Test(priority = 6)
-  @Description("create new user")
-  public void clickCreateNewUserBtnAdminServer() {
-    WebFlows.clickCreateNewUserBtn();
-    Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
-    Assert.assertEquals(addNewUserDetailsPage.getPageTitleAddNewUser().getText(), "Add new user");
-  }
-
-  @Test(priority = 7, dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar", "clickCreateNewUserBtnAdminServer"}, dataProvider = "data-provider", dataProviderClass = ManageDDT.class)
+  @Test(priority = 6, dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar"}, dataProvider = "data-provider", dataProviderClass = ManageDDT.class)
   @Description("create new user")
   public void createNewUserServerAdmin(String one, String two, String three, String four) {
     WebFlows.createNewUser(one, two, three, four);
@@ -78,14 +70,14 @@ public class WebTests extends CommonOps {
     Assert.assertTrue(WebFlows.checkUserCreated("team4@gmail.com"));
   }
 
-  @Test(priority = 8,dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar"})
+  @Test(priority = 7,dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar"})
   @Description("Test JDBC")
   public void testJDBC(){
     ManageJDBC.readFromDB();
     softAssert.assertTrue(DBActions.checkUserCreated("Adam_a@gmail.com"));
     softAssert.assertTrue(DBActions.checkUserCreated("Danny_k@gmail.com"));
     softAssert.assertTrue(DBActions.checkUserCreated("Yoram_t@gmail.com"));
-    softAssert.assertAll();
     DBActions.deleteUserDB();
+    softAssert.assertAll();
   }
 }
