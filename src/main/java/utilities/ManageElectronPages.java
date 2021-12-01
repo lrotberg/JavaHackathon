@@ -6,8 +6,6 @@ import pages.electronPages.ToDoPage;
 
 public class ManageElectronPages extends BasePage {
 
-  private static ToDoPage toDoPage;
-
   @Step("Build Electron Pages")
   public static void buildPages() {
     toDoPage = PageFactory.initElements(driver, ToDoPage.class);

@@ -5,14 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 import pages.webPages.*;
 
 
-public class ManageWebPages extends CommonOps {
-
-  private static LoginPage loginPage;
-  private static HomePage homePage;
-  private static LeftMenuPage leftMenuPage;
-  private static ServerAdminPage serverAdminPage;
-  private static AddNewUserDetailsPage addNewUserDetailsPage;
-  private static SkipPage skipPage;
+public class ManageWebPages extends BasePage {
 
   @Step("Build Web Pages")
   public static void buildPages() {

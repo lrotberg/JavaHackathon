@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 
 import java.sql.SQLException;
 
-public class JDBC extends BasePage{
+public class ManageJDBC extends BasePage{
 
    @Step("JDBC")
     public static void jdbc() throws SQLException {

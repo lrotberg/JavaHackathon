@@ -1,9 +1,8 @@
 import com.google.common.util.concurrent.Uninterruptibles;
+import extentions.MobileVerifications;
 import io.qameta.allure.Description;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.mobilePages.LivingTabTemperaturePage;
 import utilities.CommonOps;
 import utilities.HackathonListeners;
 import workflows.MobileFlow;
@@ -11,15 +10,15 @@ import workflows.MobileFlow;
 import java.util.concurrent.TimeUnit;
 
 @Listeners(HackathonListeners.class)
-public class AppiumTest extends CommonOps {
+public class MobileTest extends CommonOps {
 
-  @Test(priority = 1)
-  @Description("living tab")
+  @Test(description = "Switch to Living Temperature Tab", priority = 1)
+  @Description("This test should switch to the ")
   public void goToLivingTab() {
     Uninterruptibles.sleepUninterruptibly(2, TimeUnit.SECONDS);
-    MobileFlow.livingTab();
+    MobileFlow.switchToLivingTemperatureTab();
     Uninterruptibles.sleepUninterruptibly(2, TimeUnit.SECONDS);
-    Assert.assertEquals(LivingTabTemperaturePage.getFirstTitle().getText(), "Majors");
+    MobileVerifications.verifyEquals(livingTabTemperaturePage.getFirstTitle().getText(), "Majors");
   }
 
   @Test(priority = 2)
@@ -28,7 +27,7 @@ public class AppiumTest extends CommonOps {
     Uninterruptibles.sleepUninterruptibly(2, TimeUnit.SECONDS);
     MobileFlow.temperatureTab();
     Uninterruptibles.sleepUninterruptibly(2, TimeUnit.SECONDS);
-    Assert.assertEquals(LivingTabTemperaturePage.getFavoritesTitle().getText(), "FAVORITES");
+    MobileVerifications.verifyEquals(livingTabTemperaturePage.getTitleFavorites().getText(), "FAVORITES");
   }
 
   @Test(priority = 3)
@@ -37,7 +36,7 @@ public class AppiumTest extends CommonOps {
     Uninterruptibles.sleepUninterruptibly(2, TimeUnit.SECONDS);
     MobileFlow.openNumPad();
     Uninterruptibles.sleepUninterruptibly(2, TimeUnit.SECONDS);
-    Assert.assertEquals(LivingTabTemperaturePage.getTempInput().getText(), "0");
+    MobileVerifications.verifyEquals(livingTabTemperaturePage.getTempInput().getText(), "0");
   }
 
   @Test(priority = 4)
@@ -46,7 +45,7 @@ public class AppiumTest extends CommonOps {
     Uninterruptibles.sleepUninterruptibly(2, TimeUnit.SECONDS);
     MobileFlow.enterNumbersToNumPad();
     Uninterruptibles.sleepUninterruptibly(2, TimeUnit.SECONDS);
-    Assert.assertEquals(LivingTabTemperaturePage.getfTemp().getText(), "95");
+    MobileVerifications.verifyEquals(livingTabTemperaturePage.getfTemp().getText(), "95");
   }
 
 }

@@ -56,7 +56,7 @@ public class UIActions extends CommonOps {
     driver.switchTo().window(originalWindowID);
   }
 
-  @Step("getting the expected result for assert")
+  @Step("Check User Created")
   public static Boolean checkUserBeenCreated() {
     for (WebElement row : ServerAdminPage.getLoginColTeam4()) {
       if (row.getText().equals("team4")) {

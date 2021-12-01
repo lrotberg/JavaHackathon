@@ -9,12 +9,12 @@ import utilities.CommonOps;
 
 public class MobileActions extends CommonOps {
 
-  @Step("click")
+  @Step("Mobile Click")
   public static void click(WebElement element) {
     element.click();
   }
 
-  @Step("move to element")
+  @Step("Move to Element")
   public static void moveToElement(WebElement element) {
     touch.tap(new TapOptions().withElement(ElementOption.element(LivingTabTemperaturePage.getTempBtn()))).perform();
   }

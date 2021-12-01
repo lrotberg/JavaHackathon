@@ -78,7 +78,7 @@ public class CommonOps extends BasePage {
     capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "kr.sira.unit");
     capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".Intro");
     mobileDriver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
-    MobileManagePages.buildPagesAppium();
+    ManageMobilePages.buildPagesAppium();
   }
 
   @Step("Open API Session")
@@ -117,13 +117,13 @@ public class CommonOps extends BasePage {
   @Step("Open DB session")
   public void openDBSession() throws ClassNotFoundException, SQLException, InterruptedException {
     Class.forName("com.mysql.cj.jdbc.Driver");  //Load mysql jdbc driver
-    con= DriverManager.getConnection(dbUrl,user,pass); //Create DB connection
+    con = DriverManager.getConnection(dbUrl, user, pass); //Create DB connection
     Uninterruptibles.sleepUninterruptibly(20, TimeUnit.SECONDS);
-    stmt=con.createStatement(); //Create Statement Object
+    stmt = con.createStatement(); //Create Statement Object
     ManageDB.buildPages();
     Uninterruptibles.sleepUninterruptibly(10, TimeUnit.SECONDS);
-    query="select * from UsersGrafana";
-    rs= stmt.executeQuery(query); //Execute the SQL Query.Store results in ResultSe
+    query = "select * from UsersGrafana";
+    rs = stmt.executeQuery(query); //Execute the SQL Query.Store results in ResultSe
   }
 
   @Step("Close Web Session")
