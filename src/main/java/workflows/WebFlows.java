@@ -33,17 +33,13 @@ public class WebFlows extends CommonOps {
     UIActions.click(leftMenuPage.getLinkServerAdmin());
   }
 
-  @Step("Click New User")
-  public static void clickNewUserBtn() {
-    UIActions.click(ServerAdminPage.getNewUserBtn());
-  @Step("Click Create New User")
   public static void clickCreateNewUserBtn() {
     UIActions.click(serverAdminPage.getNewUserBtn());
   }
 
   @Step("Create New User - Getting Data From CSV File")
   public static void createNewUser(String Name, String Email, String userName, String pass) {
-    clickNewUserBtn();
+    clickCreateNewUserBtn();
     UIActions.updateText(addNewUserDetailsPage.getNameOfNewUserTxt(), Name);
     UIActions.updateText(addNewUserDetailsPage.getEmailOfNewUserTxt(), Email);
     UIActions.updateText(addNewUserDetailsPage.getUserNameOfNewUserTxt(), userName);

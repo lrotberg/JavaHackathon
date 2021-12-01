@@ -1,3 +1,5 @@
+import com.google.common.util.concurrent.Uninterruptibles;
+import extentions.DBActions;
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,68 +10,82 @@ import org.testng.annotations.Test;
 
 import utilities.CommonOps;
 import utilities.ManageDDT;
+import utilities.ManageJDBC;
 import workflows.WebFlows;
+
+import java.util.concurrent.TimeUnit;
 
 public class WebTests extends CommonOps {
 
   @Test(priority = 1)
   @Description("insert data to login page")
-  public void enterDataToLoginPage() throws InterruptedException {
+  public void enterDataToLoginPage()  {
     WebFlows.login();
-    Thread.sleep(3000);
+    Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
     WebFlows.skip();
-    Thread.sleep(3000);
+    Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
     Assert.assertEquals(homePage.getWelcomeTitle().getText(), "Welcome to Grafana");
   }
 
   @Test(priority = 2, dependsOnMethods = "enterDataToLoginPage")
   @Description("click Grafana fundamentals page button with sikuli")
   public void clickGrafanaFundamentalsPage() throws FindFailed, InterruptedException {
-    Thread.sleep(10000);
+    Uninterruptibles.sleepUninterruptibly(10, TimeUnit.SECONDS);
     WebFlows.clickToGrafanaFundamentalsPageWithSikuli();
-    Thread.sleep(8000);
+    Uninterruptibles.sleepUninterruptibly(8, TimeUnit.SECONDS);
     WebFlows.navigateToGrafanaWeb();
   }
 
   @Test(priority = 3, dependsOnMethods = "enterDataToLoginPage")
   @Description("click vector home page")
-  public void clickVectorHomePage() throws InterruptedException {
+  public void clickVectorHomePage() {
     WebDriverWait wait = new WebDriverWait(driver, 10);
     wait.until(ExpectedConditions.visibilityOfElementLocated((By.className("css-1m4liiw"))));
     WebFlows.clickRightVector();
-    Thread.sleep(3000);
+    Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
     Assert.assertEquals(homePage.getTitleMiddleRec().getText(), "Advanced");
   }
 
   @Test(priority = 4)
   @Description("scroll to article Nov 22 in home page")
-  public void scrollToArticleHomePage() throws InterruptedException {
+  public void scrollToArticleHomePage() {
     WebFlows.scrollArticle();
-    Thread.sleep(3000);
+    Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
     Assert.assertEquals(homePage.getGrayTitleNov22().getText(), "Nov 22");
   }
 
   @Test(priority = 5)
   @Description("click to server admin page in nav bar")
-  public void clickToServerAdminNavBar() throws InterruptedException {
+  public void clickToServerAdminNavBar() {
     WebFlows.clickToServerAdmin();
-    Thread.sleep(6000);
+    Uninterruptibles.sleepUninterruptibly(6, TimeUnit.SECONDS);
     Assert.assertEquals(serverAdminPage.getPageTitleAdminServer().getText(), "Server Admin");
   }
 
   @Test(priority = 6)
   @Description("create new user")
-  public void clickCreateNewUserBtnAdminServer() throws InterruptedException {
+  public void clickCreateNewUserBtnAdminServer() {
     WebFlows.clickCreateNewUserBtn();
-    Thread.sleep(3000);
+    Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
     Assert.assertEquals(addNewUserDetailsPage.getPageTitleAddNewUser().getText(), "Add new user");
   }
 
   @Test(priority = 7, dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar", "clickCreateNewUserBtnAdminServer"}, dataProvider = "data-provider", dataProviderClass = ManageDDT.class)
   @Description("create new user")
-  public void createNewUserServerAdmin(String one, String two, String three, String four) throws InterruptedException {
+  public void createNewUserServerAdmin(String one, String two, String three, String four) {
     WebFlows.createNewUser(one, two, three, four);
-    Thread.sleep(3000);
-    Assert.assertTrue(WebFlows.checkUserCreated());
+    Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
+    Assert.assertTrue(WebFlows.checkUserCreated("team4@gmail.com"));
+  }
+
+  @Test(priority = 8,dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar"})
+  @Description("Test JDBC")
+  public void testJDBC(){
+    ManageJDBC.readFromDB();
+    softAssert.assertTrue(DBActions.checkUserCreated("Adam_a@gmail.com"));
+    softAssert.assertTrue(DBActions.checkUserCreated("Danny_k@gmail.com"));
+    softAssert.assertTrue(DBActions.checkUserCreated("Yoram_t@gmail.com"));
+    softAssert.assertAll();
+    DBActions.deleteUserDB();
   }
 }
