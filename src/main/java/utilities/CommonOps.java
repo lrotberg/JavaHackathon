@@ -120,12 +120,12 @@ public class CommonOps extends BasePage {
   public void openDBSession() throws ClassNotFoundException, SQLException {
     Class.forName("com.mysql.cj.jdbc.Driver");  //Load mysql jdbc driver
     Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
-    stmt = con.createStatement(); //Create Statement Object
     con = DriverManager.getConnection(dbUrl, user, pass); //Create DB connection
+    stmt = con.createStatement(); //Create Statement Object
     ManageDB.buildPages();
     Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
-    rs = stmt.executeQuery(query); //Execute the SQL Query.Store results in ResultSe
     query = "select * from UsersGrafana";
+    rs = stmt.executeQuery(query); //Execute the SQL Query.Store results in ResultSe
   }
 
   @Step("Close Web Session")
