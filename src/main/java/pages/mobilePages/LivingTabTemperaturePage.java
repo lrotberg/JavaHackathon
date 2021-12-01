@@ -29,19 +29,16 @@ public class LivingTabTemperaturePage
     protected static WebElement fTemp;
 
     @AndroidFindBy(xpath  = "//*[@id='tab1_num3']")         //press the keypad num 3
-    protected static WebElement num3InKeyBoard;
+    protected static WebElement keyNumber3;
 
     @AndroidFindBy(xpath  = "//*[@id='tab1_num5']")          //press the keypad num 5
-    protected static WebElement num5InKeyBoard;
+    protected static WebElement keyNumber5;
 
     @AndroidFindBy(xpath  = "//*[@id='tab1_numok']")        //press the keypad ok button
-    protected static WebElement pressOKBtn;
+    protected static WebElement btnOK;
 
     @AndroidFindBy(xpath  = "//*[@text='FAVORITES']")           //title of top right side  (for assert)
-    protected static WebElement favoritesTitle;
-
-    @AndroidFindBy(xpath  = "//*[@id='text1']")           //first title in living tab= Majors (top left side)
-    protected static WebElement firstTitle;
+    protected static WebElement titleFavorites;
 
     public static WebElement getLivingBtn() {
         return LivingBtn;
@@ -55,27 +52,21 @@ public class LivingTabTemperaturePage
         return fTemp;
     }
 
-    public static WebElement getNum3InKeyBoard() {
-        return num3InKeyBoard;
+    public static WebElement getKeyNumber3() { return keyNumber3; }
+
+    public static WebElement getKeyNumber5() {
+        return keyNumber5;
     }
 
-    public static WebElement getNum5InKeyBoard() {
-        return num5InKeyBoard;
-    }
-
-    public static WebElement getPressOKBtn() {
-        return pressOKBtn;
+    public static WebElement getBtnOK() {
+        return btnOK;
     }
 
     public static WebElement getTempBtn() {
         return tempBtn;
     }
 
-    public static WebElement getFavoritesTitle() {
-        return favoritesTitle;
-    }
-
-    public static WebElement getFirstTitle() {
-        return firstTitle;
+    public static WebElement getTitleFavorites() {
+        return titleFavorites;
     }
 }

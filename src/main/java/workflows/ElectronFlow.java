@@ -3,7 +3,6 @@ package workflows;
 import com.google.common.util.concurrent.Uninterruptibles;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
-import pages.electronPages.ToDoPage;
 import utilities.CommonOps;
 import extentions.UIActions;
 
@@ -13,18 +12,18 @@ public class ElectronFlow extends CommonOps {
 
   @Step("Change Header Color")
   public static void changeHeaderColor(String hexColor) {
-    UIActions.click(ToDoPage.getBtnChangeColor());
-    UIActions.clearText(ToDoPage.getInputHexColor());
-    UIActions.updateText(ToDoPage.getInputHexColor(), hexColor);
-    UIActions.click(ToDoPage.getBtnSaveColor());
+    UIActions.click(toDoPage.getBtnChangeColor());
+    UIActions.clearText(toDoPage.getInputHexColor());
+    UIActions.updateText(toDoPage.getInputHexColor(), hexColor);
+    UIActions.click(toDoPage.getBtnSaveColor());
     Uninterruptibles.sleepUninterruptibly(2, TimeUnit.SECONDS);
   }
 
   @Step("Add a Todo")
   public static void addToDo(String toDoText) {
-    UIActions.click(ToDoPage.getInputAddTask());
-    UIActions.clearText(ToDoPage.getInputAddTask());
-    UIActions.updateText(ToDoPage.getInputAddTask(), toDoText + Keys.RETURN.toString());
+    UIActions.click(toDoPage.getInputAddTask());
+    UIActions.clearText(toDoPage.getInputAddTask());
+    UIActions.updateText(toDoPage.getInputAddTask(), toDoText + Keys.RETURN.toString());
   }
 
 }

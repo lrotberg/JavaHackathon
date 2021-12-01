@@ -6,10 +6,9 @@ import pages.desktopPages.CalculatorPage;
 
 public class ManageDesktopPages extends BasePage {
 
-  private static CalculatorPage calcPage;
-
   @Step("Build Desktop Pages")
   public static void buildPages() {
-    calcPage = PageFactory.initElements(desktopDriver, CalculatorPage.class);
+    calculatorPage = PageFactory.initElements(desktopDriver, CalculatorPage.class);
   }
+
 }

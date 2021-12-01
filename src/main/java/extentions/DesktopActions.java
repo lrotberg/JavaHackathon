@@ -6,8 +6,9 @@ import utilities.CommonOps;
 
 public class DesktopActions extends CommonOps {
 
-  @Step("click num pad")
+  @Step("Desktop Click")
   public static void click(WebElement element) {
     element.click();
   }
+
 }

@@ -3,7 +3,6 @@ package workflows;
 import com.google.common.util.concurrent.Uninterruptibles;
 import io.qameta.allure.Step;
 import org.sikuli.script.FindFailed;
-import pages.webPages.*;
 import utilities.CommonOps;
 import extentions.UIActions;
 
@@ -14,50 +13,48 @@ public class WebFlows extends CommonOps {
   @Step("Login")
   public static void login() {
     Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
-    UIActions.updateText(LoginPage.getUser(), "admin");
-    UIActions.updateText(LoginPage.getPass(), "admin");
-    UIActions.click(LoginPage.getloginBtn());
+    UIActions.updateText(loginPage.getUser(), "admin");
+    UIActions.updateText(loginPage.getPass(), "admin");
+    UIActions.click(loginPage.getloginBtn());
   }
 
   @Step("Skip New User Creation")
   public static void skip() {
-    UIActions.click(SkipPage.getSkipBtn());
+    UIActions.click(skipPage.getSkipBtn());
   }
 
   @Step("Scroll to Article Nov22")
   public static void scrollArticle() {
-    UIActions.scroll(HomePage.getLatestFromTheBlogNov22());
+    UIActions.scroll(homePage.getLatestFromTheBlogNov22());
   }
 
   @Step("Move to Server Admin")
   public static void clickToServerAdmin() {
-    UIActions.click(LeftMenuPage.getLinkServerAdmin());
+    UIActions.click(leftMenuPage.getLinkServerAdmin());
   }
 
-  @Step("Click New User")
-  public static void clickNewUserBtn() {
-    UIActions.click(ServerAdminPage.getNewUserBtn());
+  public static void clickCreateNewUserBtn() {
+    UIActions.click(serverAdminPage.getNewUserBtn());
   }
 
   @Step("Create New User - Getting Data From CSV File")
   public static void createNewUser(String Name, String Email, String userName, String pass) {
-    System.out.println(userName);
-    clickNewUserBtn();
-    UIActions.updateText(AddNewUserDetailsPage.getNameOfNewUserTxt(), Name);
-    UIActions.updateText(AddNewUserDetailsPage.getEmailOfNewUserTxt(), Email);
-    UIActions.updateText(AddNewUserDetailsPage.getUserNameOfNewUserTxt(), userName);
-    UIActions.updateText(AddNewUserDetailsPage.getPasswordOfNameNewUserTxt(), pass);
-    UIActions.click(AddNewUserDetailsPage.getCreateUserBtn());
+    clickCreateNewUserBtn();
+    UIActions.updateText(addNewUserDetailsPage.getNameOfNewUserTxt(), Name);
+    UIActions.updateText(addNewUserDetailsPage.getEmailOfNewUserTxt(), Email);
+    UIActions.updateText(addNewUserDetailsPage.getUserNameOfNewUserTxt(), userName);
+    UIActions.updateText(addNewUserDetailsPage.getPasswordOfNameNewUserTxt(), pass);
+    UIActions.click(addNewUserDetailsPage.getCreateUserBtn());
   }
 
   @Step("Scroll to the Right")
   public static void clickRightVector() {
-    UIActions.moveToElement(HomePage.getVectorBtn());
+    UIActions.moveToElement(homePage.getVectorBtn());
   }
 
-  @Step("Move to cCeate Users and Teams")
+  @Step("Move to Create Users and Teams")
   public static void clickCreateUsersAndTeams() {
-    UIActions.click(HomePage.getCreateUsersAndTeams());
+    UIActions.click(homePage.getCreateUsersAndTeams());
   }
 
   @Step("Sikuli Click Grafana Home Page")

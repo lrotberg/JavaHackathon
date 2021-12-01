@@ -57,13 +57,15 @@ public class CommonOps extends BasePage {
       case "opera":
         WebDriverManager.operadriver().setup();
         driver = new OperaDriver();
+        break;
       case "safari":
         WebDriverManager.safaridriver().setup();
         driver = new SafariDriver();
+        break;
     }
     driver.manage().window().maximize();
     driver.get(url);
-    ManagePages.buildPages();
+    ManageWebPages.buildPages();
     action = new Actions(driver);
     screen = new Screen();
   }
@@ -78,7 +80,7 @@ public class CommonOps extends BasePage {
     capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "kr.sira.unit");
     capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".Intro");
     mobileDriver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), capabilities);
-    MobileManagePages.buildPagesAppium();
+    ManageMobilePages.buildPagesAppium();
   }
 
   @Step("Open API Session")
@@ -115,15 +117,15 @@ public class CommonOps extends BasePage {
   }
 
   @Step("Open DB session")
-  public void openDBSession() throws ClassNotFoundException, SQLException, InterruptedException {
+  public void openDBSession() throws ClassNotFoundException, SQLException {
     Class.forName("com.mysql.cj.jdbc.Driver");  //Load mysql jdbc driver
-    con= DriverManager.getConnection(dbUrl,user,pass); //Create DB connection
     Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
-    stmt=con.createStatement(); //Create Statement Object
+    con = DriverManager.getConnection(dbUrl, user, pass); //Create DB connection
+    stmt = con.createStatement(); //Create Statement Object
     ManageDB.buildPages();
     Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
-    query="select * from UsersGrafana";
-    rs= stmt.executeQuery(query); //Execute the SQL Query.Store results in ResultSe
+    query = "select * from UsersGrafana";
+    rs = stmt.executeQuery(query); //Execute the SQL Query.Store results in ResultSe
   }
 
   @Step("Close Web Session")
@@ -147,7 +149,7 @@ public class CommonOps extends BasePage {
   }
 
   @BeforeClass
-  public void startup() throws MalformedURLException, SQLException, ClassNotFoundException, InterruptedException {
+  public void startup() throws MalformedURLException, SQLException, ClassNotFoundException {
     switch (getData("PlatformName")) {
       case "web":
         openWebSession();
@@ -175,23 +177,22 @@ public class CommonOps extends BasePage {
 
   @AfterClass
   public void teardown() throws SQLException {
-    closeWebSession();
-    closeDBSession();
-//    switch (getData("PlatformName")) {
-//      case "web":
-//      case "electron":
-//        closeWebSession();
-//        break;
-//      case "mobile":
-//        closeMobileSession();
-//        break;
-//      case "desktop":
-//        closeDesktopSession();
-//        break;
-//      case "db":
-//        closeDBSession();
-//        break;
-//    }
+    switch (getData("PlatformName")) {
+      case "web":
+      case "electron":
+        closeWebSession();
+        break;
+      case "mobile":
+        closeMobileSession();
+        break;
+      case "desktop":
+        closeDesktopSession();
+        break;
+      case "db":
+        closeDBSession();
+        closeWebSession();
+        break;
+    }
   }
 
   @Step("Save Screenshot")

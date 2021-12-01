@@ -5,15 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 import pages.webPages.*;
 
 
-public class ManagePages extends BasePage {
-
-  private static LoginPage loginPage;
-  private static HomePage homePage;
-  private static LeftMenuPage leftMenuPage;
-  private static ServerAdminPage serverAdminPage;
-  private static AddNewUserDetailsPage addNewUserDetailsPage;
-  private static SkipPage skipPage;
-  private static UserInformationPage userInformation;
+public class ManageWebPages extends BasePage {
 
   @Step("Build Web Pages")
   public static void buildPages() {
@@ -23,7 +15,7 @@ public class ManagePages extends BasePage {
     serverAdminPage = PageFactory.initElements(driver, ServerAdminPage.class);
     addNewUserDetailsPage = PageFactory.initElements(driver, AddNewUserDetailsPage.class);
     skipPage = PageFactory.initElements(driver, SkipPage.class);
-    userInformation=PageFactory.initElements(driver, UserInformationPage.class);
+    userInformationPage = PageFactory.initElements(driver, UserInformationPage.class);
   }
 
 }
