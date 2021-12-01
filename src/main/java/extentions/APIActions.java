@@ -20,7 +20,7 @@ public class APIActions extends CommonOps {
   public static void createUser(JSONObject params) {
     params.put("name", "OdeyaLiorMichal");
     params.put("email", "olm@gmail.com");
-    params.put("login", "olm");
+    params.put("login", "OdeyaLiorMichal");
     params.put("password", "olm456");
     request.body(params.toJSONString());
   }

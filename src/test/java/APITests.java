@@ -8,32 +8,25 @@ import workflows.APIFlows;
 @Listeners(HackathonListeners.class)
 public class APITests extends CommonOps {
 
+
   @Test(priority = 1)
-  public void get() throws InterruptedException {
-    APIFlows.getFlows();
-    Thread.sleep(3000);
-    Assert.assertEquals(response.getStatusCode(), 200);
-  }
-
-  @Test(priority = 2)
-  public void put() throws InterruptedException {
-    APIFlows.putFlows();
-    Thread.sleep(3000);
-    Assert.assertEquals(response.getStatusCode(), 200);
-  }
-
-  @Test(priority = 3)
-  public void post() throws InterruptedException {
+  public void post()  {
     APIFlows.createFlows();
     APIFlows.postFlows();
-    Thread.sleep(3000);
     Assert.assertEquals(response.getStatusCode(), 200);
   }
 
-  @Test(priority = 4)
-  public void delete() throws InterruptedException {
-    APIFlows.deleteFlows();
-    Thread.sleep(3000);
+  @Test(priority = 3, dependsOnMethods = {"post"})
+  public void put()  {
+    APIFlows.getFlows();
+    APIFlows.putFlows(response.jsonPath().get("id"));
+    Assert.assertEquals(response.getStatusCode(), 200);
+  }
+
+  @Test(priority = 4, dependsOnMethods = {"post"})
+  public void delete() {
+    APIFlows.getFlows();
+    APIFlows.deleteFlows(response.jsonPath().get("id"));
     Assert.assertEquals(response.getStatusCode(), 200);
   }
 }

@@ -64,8 +64,8 @@ public class WebTests extends CommonOps {
 
   @Test(priority = 6, dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar"}, dataProvider = "data-provider", dataProviderClass = ManageDDT.class)
   @Description("create new user")
-  public void createNewUserServerAdmin(String one, String two, String three, String four) {
-    WebFlows.createNewUser(one, two, three, four);
+  public void createNewUserServerAdmin(String name, String email, String userName, String password) {
+    WebFlows.createNewUser(name, email, userName, password);
     Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
     Assert.assertTrue(WebFlows.checkUserCreated("team4@gmail.com"));
     DBActions.deleteUserDB();
