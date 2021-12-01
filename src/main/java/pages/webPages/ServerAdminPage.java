@@ -13,8 +13,8 @@ public class ServerAdminPage {
     @FindBy(xpath = "//h1[@class='page-header__title']")
     protected static WebElement pageTitleAdminServer;
 
-    @FindBy(xpath = "//table/tbody/tr/td[2]")
-    protected static List<WebElement> loginColTeam4;
+    @FindBy(xpath = "//table/tbody/tr/td[3]")
+    protected static List<WebElement> emailsInTable;
 
     public static WebElement getNewUserBtn() {
         return newUserBtn;
@@ -24,7 +24,9 @@ public class ServerAdminPage {
         return pageTitleAdminServer;
     }
 
-    public static List<WebElement> getLoginColTeam4() {
-        return loginColTeam4;
+    public static List<WebElement> getEmailsInTable() {
+        return emailsInTable;
     }
+
+
 }

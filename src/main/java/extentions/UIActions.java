@@ -1,11 +1,16 @@
 package extentions;
 
+import com.google.common.util.concurrent.Uninterruptibles;
 import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
 import pages.webPages.ServerAdminPage;
+import pages.webPages.UserInformationPage;
 import utilities.CommonOps;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class UIActions extends CommonOps {
 
@@ -57,13 +62,28 @@ public class UIActions extends CommonOps {
   }
 
   @Step("Check User Created")
-  public static Boolean checkUserBeenCreated() {
-    for (WebElement row : ServerAdminPage.getLoginColTeam4()) {
-      if (row.getText().equals("team4")) {
+  public static boolean checkUserBeenCreated(String email) {
+    for (WebElement row : ServerAdminPage.getEmailsInTable()) {
+      if (row.getText().equals(email)) {
         System.out.println(row.getText());
         return true;
       }
     }
     return false;
+  }
+
+  @Step("delete")
+  public static void delete(){
+    List<WebElement> listEmails=ServerAdminPage.getEmailsInTable();
+    for(int i=0;i<listEmails.size();i++){
+      if (!(listEmails.get(i).getText().contains("admin@localhost"))){
+        listEmails.get(i).click();
+        Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
+        UserInformationPage.getDeleteUserBtn().click();
+        UserInformationPage.getDeleteUserBtnPopUp().click();
+        Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
+        i--;
+      }
+    }
   }
 }

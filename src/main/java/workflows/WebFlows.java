@@ -33,6 +33,9 @@ public class WebFlows extends CommonOps {
     UIActions.click(leftMenuPage.getLinkServerAdmin());
   }
 
+  @Step("Click New User")
+  public static void clickNewUserBtn() {
+    UIActions.click(ServerAdminPage.getNewUserBtn());
   @Step("Click Create New User")
   public static void clickCreateNewUserBtn() {
     UIActions.click(serverAdminPage.getNewUserBtn());
@@ -40,6 +43,7 @@ public class WebFlows extends CommonOps {
 
   @Step("Create New User - Getting Data From CSV File")
   public static void createNewUser(String Name, String Email, String userName, String pass) {
+    clickNewUserBtn();
     UIActions.updateText(addNewUserDetailsPage.getNameOfNewUserTxt(), Name);
     UIActions.updateText(addNewUserDetailsPage.getEmailOfNewUserTxt(), Email);
     UIActions.updateText(addNewUserDetailsPage.getUserNameOfNewUserTxt(), userName);
@@ -68,8 +72,13 @@ public class WebFlows extends CommonOps {
   }
 
   @Step("Check User Created")
-  public static Boolean checkUserCreated() {
-    return UIActions.checkUserBeenCreated();
+  public static boolean checkUserCreated(String email) {
+    return UIActions.checkUserBeenCreated(email);
+  }
+
+  @Step("Delete User")
+  public static void deleteUser() {
+    UIActions.delete();
   }
 
 }

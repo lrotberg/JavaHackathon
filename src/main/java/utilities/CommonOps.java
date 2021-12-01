@@ -119,13 +119,13 @@ public class CommonOps extends BasePage {
   @Step("Open DB session")
   public void openDBSession() throws ClassNotFoundException, SQLException {
     Class.forName("com.mysql.cj.jdbc.Driver");  //Load mysql jdbc driver
-    con = DriverManager.getConnection(dbUrl, user, pass); //Create DB connection
-    Uninterruptibles.sleepUninterruptibly(20, TimeUnit.SECONDS);
+    Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
     stmt = con.createStatement(); //Create Statement Object
+    con = DriverManager.getConnection(dbUrl, user, pass); //Create DB connection
     ManageDB.buildPages();
-    Uninterruptibles.sleepUninterruptibly(10, TimeUnit.SECONDS);
-    query = "select * from UsersGrafana";
+    Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
     rs = stmt.executeQuery(query); //Execute the SQL Query.Store results in ResultSe
+    query = "select * from UsersGrafana";
   }
 
   @Step("Close Web Session")
@@ -167,6 +167,7 @@ public class CommonOps extends BasePage {
         openDesktopSession();
         break;
       case "db":
+        openWebSession();
         openDBSession();
         break;
     }
@@ -176,21 +177,23 @@ public class CommonOps extends BasePage {
 
   @AfterClass
   public void teardown() throws SQLException {
-    switch (getData("PlatformName")) {
-      case "web":
-      case "electron":
-        closeWebSession();
-        break;
-      case "mobile":
-        closeMobileSession();
-        break;
-      case "desktop":
-        closeDesktopSession();
-        break;
-      case "db":
-        closeDBSession();
-        break;
-    }
+    closeWebSession();
+    closeDBSession();
+//    switch (getData("PlatformName")) {
+//      case "web":
+//      case "electron":
+//        closeWebSession();
+//        break;
+//      case "mobile":
+//        closeMobileSession();
+//        break;
+//      case "desktop":
+//        closeDesktopSession();
+//        break;
+//      case "db":
+//        closeDBSession();
+//        break;
+//    }
   }
 
   @Step("Save Screenshot")
