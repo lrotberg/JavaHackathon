@@ -198,7 +198,15 @@ public class CommonOps extends BasePage {
   @Step("Save Screenshot")
   @Attachment(value = "Page Screenshot", type = "image/png")
   public byte[] saveScreenshot() {
-    return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    switch (getData("PlatformName")) {
+      case "web":
+      case "electron":
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+      case "mobile":
+        return ((TakesScreenshot) mobileDriver).getScreenshotAs(OutputType.BYTES);
+      default:
+        return null;
+    }
   }
 
   @Step("Read From XML")
