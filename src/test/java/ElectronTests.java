@@ -9,7 +9,6 @@ import workflows.ElectronFlow;
 
 import java.util.concurrent.TimeUnit;
 
-@Listeners(HackathonListeners.class)
 public class ElectronTests extends CommonOps {
 
   @Test(description = "Change Header Color")

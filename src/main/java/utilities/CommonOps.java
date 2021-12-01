@@ -24,6 +24,8 @@ import org.sikuli.script.Screen;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
 import org.w3c.dom.Document;
 
@@ -40,8 +42,9 @@ import java.util.concurrent.TimeUnit;
 public class CommonOps extends BasePage {
 
   @Step("Open Web Session")
-  public void openWebSession() {
-    switch (getData("BrowserName")) {
+  @Parameters({"BrowserName"})
+  public void openWebSession(String BrowserName) {
+    switch (BrowserName) {
       case "chrome":
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -64,7 +67,7 @@ public class CommonOps extends BasePage {
         break;
     }
     driver.manage().window().maximize();
-    driver.get(url);
+    driver.get(getData("URL"));
     ManageWebPages.buildPages();
     action = new Actions(driver);
     screen = new Screen();
@@ -73,9 +76,9 @@ public class CommonOps extends BasePage {
   @Step("open Mobile Session")
   public void openMobileSession() throws MalformedURLException {
     capabilities = new DesiredCapabilities();
-    capabilities.setCapability("reportDirectory", reportDirectory);
-    capabilities.setCapability("reportFormat", reportFormat);
-    capabilities.setCapability("testName", testName);
+    capabilities.setCapability("reportDirectory", getData("reportDirectory"));
+    capabilities.setCapability("reportFormat", getData("reportFormat"));
+    capabilities.setCapability("testName", getData("testName"));
     capabilities.setCapability(MobileCapabilityType.UDID, "R58R34SLXBD");
     capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "kr.sira.unit");
     capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".Intro");
@@ -85,20 +88,21 @@ public class CommonOps extends BasePage {
 
   @Step("Open API Session")
   public void openAPISession() {
-    RestAssured.baseURI = url;
+    RestAssured.baseURI = getData("URL");
     request = RestAssured.given().auth().preemptive().basic("admin", "admin");
     request.header("Content-Type", "application/json");
     params = new JSONObject();
   }
 
   @Step("Open Electron Session")
-  public void openElectronSession() {
+  @Parameters({"BrowserName"})
+  public void openElectronSession(String BrowserName) {
     System.setProperty("webdriver.chrome.driver", "./electrondriver.exe");
     chromeOptions = new ChromeOptions();
     chromeOptions.setBinary("C:/Users/exoli/AppData/Local/Programs/todolist/Todolist.exe");
     capabilities = new DesiredCapabilities();
     capabilities.setCapability("chromeOptions", chromeOptions);
-    capabilities.setBrowserName("chrome");
+    capabilities.setBrowserName(getData(BrowserName));
     chromeOptions.merge(capabilities);
     driver = new ChromeDriver(chromeOptions);
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -120,7 +124,7 @@ public class CommonOps extends BasePage {
   public void openDBSession() throws ClassNotFoundException, SQLException {
     Class.forName("com.mysql.cj.jdbc.Driver");  //Load mysql jdbc driver
     Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
-    con = DriverManager.getConnection(dbUrl, user, pass); //Create DB connection
+    con = DriverManager.getConnection(getData("dbUrl"), getData("user"), getData("pass")); //Create DB connection
     stmt = con.createStatement(); //Create Statement Object
     ManageDB.buildPages();
     Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
@@ -149,13 +153,14 @@ public class CommonOps extends BasePage {
   }
 
   @BeforeClass
-  public void startup() throws MalformedURLException, SQLException, ClassNotFoundException {
-    switch (getData("PlatformName")) {
+  @Parameters({"PlatformName","BrowserName"})
+  public void startup(String PlatformName,@Optional String BrowserName) throws MalformedURLException, SQLException, ClassNotFoundException {
+    switch (PlatformName) {
       case "web":
-        openWebSession();
+        openWebSession(BrowserName);
         break;
       case "electron":
-        openElectronSession();
+        openElectronSession(BrowserName);
         break;
       case "mobile":
         openMobileSession();
@@ -167,7 +172,7 @@ public class CommonOps extends BasePage {
         openDesktopSession();
         break;
       case "db":
-        openWebSession();
+        openWebSession(BrowserName);
         openDBSession();
         break;
     }
@@ -176,8 +181,9 @@ public class CommonOps extends BasePage {
   }
 
   @AfterClass
-  public void teardown() throws SQLException {
-    switch (getData("PlatformName")) {
+  @Parameters({"PlatformName"})
+  public void teardown(String PlatformName) throws SQLException {
+    switch (PlatformName) {
       case "web":
       case "electron":
         closeWebSession();
