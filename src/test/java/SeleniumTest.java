@@ -66,7 +66,7 @@ public class SeleniumTest extends CommonOps {
   @Test(priority = 6)
   @Description("create new user")
   public void clickCreateNewUserBtnAdminServer() throws InterruptedException {
-    WebFlows.clickCreateNewUserBtn();
+    WebFlows.clickNewUserBtn();
     Thread.sleep(3000);
     Assert.assertEquals(AddNewUserDetailsPage.getPageTitleAddNewUser().getText(), "Add new user");
   }
@@ -76,14 +76,18 @@ public class SeleniumTest extends CommonOps {
   public void createNewUserServerAdmin(String one, String two, String three, String four) throws InterruptedException {
     WebFlows.createNewUser(one, two, three, four);
     Thread.sleep(3000);
-    Assert.assertTrue(WebFlows.checkUserCreated());
+    //WebFlows.clickCreateNewUserBtn();
+    Assert.assertTrue(WebFlows.checkUserCreated("team4@gmail.com"));
   }
 
-  @Test(priority = 8,dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar", "clickCreateNewUserBtnAdminServer"})
+  @Test(priority = 8,dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar"})
   @Description("Test JDBC")
-  public void testJDBC() throws SQLException, InterruptedException {
+  public void testJDBC(){
     JDBC.readFromDB();
-    Thread.sleep(15000);
-    Assert.assertTrue(DBActions.checkUserCreated());
+    softAssert.assertTrue(DBActions.checkUserCreated("Adam_a@gmail.com"));
+    softAssert.assertTrue(DBActions.checkUserCreated("Danny_k@gmail.com"));
+    softAssert.assertTrue(DBActions.checkUserCreated("Yoram_t@gmail.com"));
+    softAssert.assertAll();
+    DBActions.deleteUserDB();
   }
 }

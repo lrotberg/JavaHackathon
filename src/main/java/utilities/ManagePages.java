@@ -13,6 +13,7 @@ public class ManagePages extends BasePage {
   private static ServerAdminPage serverAdminPage;
   private static AddNewUserDetailsPage addNewUserDetailsPage;
   private static SkipPage skipPage;
+  private static UserInformationPage userInformation;
 
   @Step("Build Web Pages")
   public static void buildPages() {
@@ -22,6 +23,7 @@ public class ManagePages extends BasePage {
     serverAdminPage = PageFactory.initElements(driver, ServerAdminPage.class);
     addNewUserDetailsPage = PageFactory.initElements(driver, AddNewUserDetailsPage.class);
     skipPage = PageFactory.initElements(driver, SkipPage.class);
+    userInformation=PageFactory.initElements(driver, UserInformationPage.class);
   }
 
 }
