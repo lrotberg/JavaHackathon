@@ -10,6 +10,7 @@ public class MobileFlow extends CommonOps {
   @Step("Switch to Living Temperature Tab")
   public static void switchToLivingTemperatureTab() {
     MobileActions.click(livingTabTemperaturePage.getLivingBtn());
+    MobileActions.click(livingTabTemperaturePage.getTempBtn());
   }
 
   @Step("go to temperature tab in living tab")
@@ -28,5 +29,4 @@ public class MobileFlow extends CommonOps {
     MobileActions.click(livingTabTemperaturePage.getKeyNumber5());
     MobileActions.click(livingTabTemperaturePage.getBtnOK());
   }
-
 }
