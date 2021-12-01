@@ -46,7 +46,6 @@ public class UIActions extends CommonOps {
   @Step("Click With Sikuli")
   public static void clickWithSikuli(String picture) throws FindFailed {
     screen.click("C://Ness - Automation Developer/JavaHackathon/Sikuli/" + picture, 80);
-    screen.click("C://Ness - Automation Developer/JavaHackathon/Sikuli/" + picture, 80);
   }
 
   @Step("Navigate to Original Window")

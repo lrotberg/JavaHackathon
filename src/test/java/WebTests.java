@@ -68,6 +68,7 @@ public class WebTests extends CommonOps {
     WebFlows.createNewUser(one, two, three, four);
     Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
     Assert.assertTrue(WebFlows.checkUserCreated("team4@gmail.com"));
+    DBActions.deleteUserDB();
   }
 
   @Test(priority = 7,dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar"})
