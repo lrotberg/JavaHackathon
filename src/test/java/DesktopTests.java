@@ -6,7 +6,7 @@ import workflows.DesktopFlow;
 
 import java.util.concurrent.TimeUnit;
 
-public class DesktopTest extends CommonOps {
+public class DesktopTests extends CommonOps {
 
   @Test(description = "Test Calculator App")
   @Description("This test should make a few operations and then verify the result")

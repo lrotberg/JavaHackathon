@@ -6,7 +6,7 @@ import utilities.HackathonListeners;
 import workflows.APIFlows;
 
 @Listeners(HackathonListeners.class)
-public class APITest extends CommonOps {
+public class APITests extends CommonOps {
 
   @Test(priority = 1)
   public void get() throws InterruptedException {

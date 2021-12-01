@@ -57,9 +57,11 @@ public class CommonOps extends BasePage {
       case "opera":
         WebDriverManager.operadriver().setup();
         driver = new OperaDriver();
+        break;
       case "safari":
         WebDriverManager.safaridriver().setup();
         driver = new SafariDriver();
+        break;
     }
     driver.manage().window().maximize();
     driver.get(url);
@@ -115,7 +117,7 @@ public class CommonOps extends BasePage {
   }
 
   @Step("Open DB session")
-  public void openDBSession() throws ClassNotFoundException, SQLException, InterruptedException {
+  public void openDBSession() throws ClassNotFoundException, SQLException {
     Class.forName("com.mysql.cj.jdbc.Driver");  //Load mysql jdbc driver
     con = DriverManager.getConnection(dbUrl, user, pass); //Create DB connection
     Uninterruptibles.sleepUninterruptibly(20, TimeUnit.SECONDS);
@@ -147,7 +149,7 @@ public class CommonOps extends BasePage {
   }
 
   @BeforeClass
-  public void startup() throws MalformedURLException, SQLException, ClassNotFoundException, InterruptedException {
+  public void startup() throws MalformedURLException, SQLException, ClassNotFoundException {
     switch (getData("PlatformName")) {
       case "web":
         openWebSession();

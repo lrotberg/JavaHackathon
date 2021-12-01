@@ -5,14 +5,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.sikuli.script.FindFailed;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.webPages.AddNewUserDetailsPage;
-import pages.webPages.HomePage;
-import pages.webPages.ServerAdminPage;
+
 import utilities.CommonOps;
 import utilities.ManageDDT;
 import workflows.WebFlows;
 
-public class SeleniumTest extends CommonOps {
+public class WebTests extends CommonOps {
 
   @Test(priority = 1)
   @Description("insert data to login page")
@@ -21,7 +19,7 @@ public class SeleniumTest extends CommonOps {
     Thread.sleep(3000);
     WebFlows.skip();
     Thread.sleep(3000);
-    Assert.assertEquals(HomePage.getWelcomeTitle().getText(), "Welcome to Grafana");
+    Assert.assertEquals(homePage.getWelcomeTitle().getText(), "Welcome to Grafana");
   }
 
   @Test(priority = 2, dependsOnMethods = "enterDataToLoginPage")
@@ -40,7 +38,7 @@ public class SeleniumTest extends CommonOps {
     wait.until(ExpectedConditions.visibilityOfElementLocated((By.className("css-1m4liiw"))));
     WebFlows.clickRightVector();
     Thread.sleep(3000);
-    Assert.assertEquals(HomePage.getTitleMiddleRec().getText(), "Advanced");
+    Assert.assertEquals(homePage.getTitleMiddleRec().getText(), "Advanced");
   }
 
   @Test(priority = 4)
@@ -48,7 +46,7 @@ public class SeleniumTest extends CommonOps {
   public void scrollToArticleHomePage() throws InterruptedException {
     WebFlows.scrollArticle();
     Thread.sleep(3000);
-    Assert.assertEquals(HomePage.getGrayTitleNov22().getText(), "Nov 22");
+    Assert.assertEquals(homePage.getGrayTitleNov22().getText(), "Nov 22");
   }
 
   @Test(priority = 5)
@@ -56,7 +54,7 @@ public class SeleniumTest extends CommonOps {
   public void clickToServerAdminNavBar() throws InterruptedException {
     WebFlows.clickToServerAdmin();
     Thread.sleep(6000);
-    Assert.assertEquals(ServerAdminPage.getPageTitleAdminServer().getText(), "Server Admin");
+    Assert.assertEquals(serverAdminPage.getPageTitleAdminServer().getText(), "Server Admin");
   }
 
   @Test(priority = 6)
@@ -64,7 +62,7 @@ public class SeleniumTest extends CommonOps {
   public void clickCreateNewUserBtnAdminServer() throws InterruptedException {
     WebFlows.clickCreateNewUserBtn();
     Thread.sleep(3000);
-    Assert.assertEquals(AddNewUserDetailsPage.getPageTitleAddNewUser().getText(), "Add new user");
+    Assert.assertEquals(addNewUserDetailsPage.getPageTitleAddNewUser().getText(), "Add new user");
   }
 
   @Test(priority = 7, dependsOnMethods = {"enterDataToLoginPage", "clickToServerAdminNavBar", "clickCreateNewUserBtnAdminServer"}, dataProvider = "data-provider", dataProviderClass = ManageDDT.class)

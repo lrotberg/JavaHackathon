@@ -10,7 +10,7 @@ import workflows.MobileFlow;
 import java.util.concurrent.TimeUnit;
 
 @Listeners(HackathonListeners.class)
-public class MobileTest extends CommonOps {
+public class MobileTests extends CommonOps {
 
   @Test(description = "Switch to Living Temperature Tab", priority = 1)
   @Description("This test should switch to the ")

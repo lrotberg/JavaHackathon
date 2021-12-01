@@ -5,7 +5,7 @@ import utilities.ManageJDBC;
 
 import java.sql.SQLException;
 
-public class JDBCTest extends CommonOps {
+public class JDBCTests extends CommonOps {
 
     @Test
     @Description("JDBC")
