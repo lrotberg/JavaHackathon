@@ -5,8 +5,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
-import pages.webPages.ServerAdminPage;
-import pages.webPages.UserInformationPage;
 import utilities.CommonOps;
 
 import java.util.List;
@@ -63,7 +61,7 @@ public class UIActions extends CommonOps {
 
   @Step("Check User Created")
   public static boolean checkUserBeenCreated(String email) {
-    for (WebElement row : ServerAdminPage.getEmailsInTable()) {
+    for (WebElement row : serverAdminPage.getEmailsInTable()) {
       if (row.getText().equals(email)) {
         System.out.println(row.getText());
         return true;
@@ -74,13 +72,13 @@ public class UIActions extends CommonOps {
 
   @Step("delete")
   public static void delete(){
-    List<WebElement> listEmails=ServerAdminPage.getEmailsInTable();
+    List<WebElement> listEmails = serverAdminPage.getEmailsInTable();
     for(int i=0;i<listEmails.size();i++){
       if (!(listEmails.get(i).getText().contains("admin@localhost"))){
         listEmails.get(i).click();
         Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
-        UserInformationPage.getDeleteUserBtn().click();
-        UserInformationPage.getDeleteUserBtnPopUp().click();
+        userInformationPage.getDeleteUserBtn().click();
+        userInformationPage.getDeleteUserBtnPopUp().click();
         Uninterruptibles.sleepUninterruptibly(5, TimeUnit.SECONDS);
         i--;
       }

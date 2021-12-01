@@ -15,6 +15,7 @@ public class ManageWebPages extends BasePage {
     serverAdminPage = PageFactory.initElements(driver, ServerAdminPage.class);
     addNewUserDetailsPage = PageFactory.initElements(driver, AddNewUserDetailsPage.class);
     skipPage = PageFactory.initElements(driver, SkipPage.class);
+    userInformationPage = PageFactory.initElements(driver, UserInformationPage.class);
   }
 
 }

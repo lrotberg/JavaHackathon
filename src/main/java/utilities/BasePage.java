@@ -57,6 +57,7 @@ public class BasePage {
   protected static ServerAdminPage serverAdminPage;
   protected static AddNewUserDetailsPage addNewUserDetailsPage;
   protected static SkipPage skipPage;
+  protected static UserInformationPage userInformationPage;
 
   protected static LivingTabTemperaturePage livingTabTemperaturePage;
 
