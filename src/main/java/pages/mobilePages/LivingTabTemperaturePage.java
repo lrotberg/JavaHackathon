@@ -40,9 +40,6 @@ public class LivingTabTemperaturePage
     @AndroidFindBy(xpath  = "//*[@text='FAVORITES']")           //title of top right side  (for assert)
     protected static WebElement titleFavorites;
 
-    @AndroidFindBy(xpath  = "//*[@id='text1']")           //first title in living tab= Majors (top left side)
-    protected static WebElement firstTitle;
-
     public static WebElement getLivingBtn() {
         return LivingBtn;
     }
@@ -71,9 +68,5 @@ public class LivingTabTemperaturePage
 
     public static WebElement getTitleFavorites() {
         return titleFavorites;
-    }
-
-    public static WebElement getFirstTitle() {
-        return firstTitle;
     }
 }
