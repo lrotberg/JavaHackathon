@@ -102,7 +102,7 @@ public class CommonOps extends BasePage {
     chromeOptions.setBinary("C:/Users/exoli/AppData/Local/Programs/todolist/Todolist.exe");
     capabilities = new DesiredCapabilities();
     capabilities.setCapability("chromeOptions", chromeOptions);
-    capabilities.setBrowserName(getData(BrowserName));
+    capabilities.setBrowserName(BrowserName);
     chromeOptions.merge(capabilities);
     driver = new ChromeDriver(chromeOptions);
     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
