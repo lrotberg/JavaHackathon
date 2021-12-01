@@ -9,7 +9,6 @@ import workflows.MobileFlow;
 
 import java.util.concurrent.TimeUnit;
 
-@Listeners(HackathonListeners.class)
 public class MobileTests extends CommonOps {
 
   @Test(description = "initiate the app to starting position: Living-> Temperature", priority = 1)

@@ -1,4 +1,9 @@
 <Envi>
-    <PlatformName>api</PlatformName>
-    <BrowserName>chrome</BrowserName>
+    <URL>http://localhost:3000</URL>
+    <reportDirectory>reports</reportDirectory>
+    <reportFormat>xml</reportFormat>
+    <testName>Untitled</testName>
+    <dbUrl>jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6455269</dbUrl>
+    <user>sql6455269</user>
+    <pass>zflL2lQxl8</pass>
 </Envi>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite" parallel="false">
+    <listeners>
+        <listener class-name="utilities.HackathonListeners"/>
+    </listeners>
+    <parameter name="PlatformName" value="web" />
+    <parameter name="BrowserName" value="chrome" />
+    <test name="Test">
+    <!--        <groups>-->
+    <!--            <run>-->
+    <!--                <include name="webTest" />-->
+    <!--            </run>-->
+    <!--        </groups>-->
+        <classes>
+            <class name="WebTests">
+            <methods>
+                <exclude name="testJDBC" />
+            </methods>
+            </class>
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

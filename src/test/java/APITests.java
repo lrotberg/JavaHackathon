@@ -5,7 +5,6 @@ import utilities.CommonOps;
 import utilities.HackathonListeners;
 import workflows.APIFlows;
 
-@Listeners(HackathonListeners.class)
 public class APITests extends CommonOps {
 
 
