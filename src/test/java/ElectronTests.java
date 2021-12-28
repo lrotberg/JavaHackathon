@@ -1,10 +1,8 @@
 import com.google.common.util.concurrent.Uninterruptibles;
 import extentions.ElectronVerifications;
 import io.qameta.allure.Description;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import utilities.CommonOps;
-import utilities.HackathonListeners;
 import workflows.ElectronFlow;
 
 import java.util.concurrent.TimeUnit;
@@ -24,7 +22,6 @@ public class ElectronTests extends CommonOps {
   public void test02_addToDo() {
     ElectronFlow.addToDo("Buy cat food");
     ElectronVerifications.verifyToDoAddition("Buy cat food");
-    Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
   }
 
 }

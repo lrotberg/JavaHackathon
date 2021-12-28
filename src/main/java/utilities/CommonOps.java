@@ -153,8 +153,8 @@ public class CommonOps extends BasePage {
   }
 
   @BeforeClass
-  @Parameters({"PlatformName","BrowserName"})
-  public void startup(String PlatformName,@Optional String BrowserName) throws MalformedURLException, SQLException, ClassNotFoundException {
+  @Parameters({"PlatformName", "BrowserName"})
+  public void startup(String PlatformName, @Optional String BrowserName) throws MalformedURLException, SQLException, ClassNotFoundException {
     switch (PlatformName) {
       case "web":
         openWebSession(BrowserName);
@@ -214,8 +214,7 @@ public class CommonOps extends BasePage {
         return null;
     }
   }
-
-  @Step("Read From XML")
+  
   @Description("Read XML from file path")
   public String getData(String nodeName) {
     DocumentBuilder dBuilder;
